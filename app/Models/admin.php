@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Auth\Authenticatable;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Corrected line
 use Illuminate\Notifications\Notifiable;
-class admin extends Model implements AuthenticatableContract
+
+class admin extends Authenticatable // Corrected line
 {
-    use HasFactory, Notifiable,Authenticatable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,4 +20,8 @@ class admin extends Model implements AuthenticatableContract
         'email',
         'password',
     ];
+    
 }
+
+
+
