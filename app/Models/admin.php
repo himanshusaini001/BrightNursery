@@ -20,7 +20,6 @@ class admin extends Authenticatable // Corrected line
         'email',
         'password',
     ];
-    
 }
 
 
