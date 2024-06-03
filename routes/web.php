@@ -12,21 +12,14 @@ use App\Http\Controllers\shopController;
 use App\Http\Controllers\shopDetailsController;
 use App\Http\Controllers\singlePostController;
 use App\Http\Controllers\singleprotfolioController;
+use Illuminate\Auth\Events\Registered;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::get('/home', [homeController::class, 'index'])->name('home');
+Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/about', [aboutController::class, 'about'])->name('about');
 Route::get('/blog', [blogController::class, 'blog'])->name('blog');
 Route::get('/cart', [cartController::class, 'cart'])->name('cart');
@@ -37,6 +30,19 @@ Route::get('/shop', [shopController::class, 'shop'])->name('shop');
 Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
+
+
+
+Route::get('/register', [Registered::class, 'index'])->name('register');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
