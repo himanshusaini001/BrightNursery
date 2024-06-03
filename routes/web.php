@@ -12,7 +12,6 @@ use App\Http\Controllers\shopController;
 use App\Http\Controllers\shopDetailsController;
 use App\Http\Controllers\singlePostController;
 use App\Http\Controllers\singleprotfolioController;
-use Illuminate\Auth\Events\Registered;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -33,7 +32,6 @@ Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfol
 
 
 
-Route::get('/register', [Registered::class, 'index'])->name('register');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
