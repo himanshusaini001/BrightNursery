@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class adminLoginController extends Controller
 {
     public function adminLogin(){
-        return view('admin.pages.sign-in');
+        return view('admin.pages.login');
     }
     public function authLogin(Request $request){
         $validation = validator::make($request->all(),[
