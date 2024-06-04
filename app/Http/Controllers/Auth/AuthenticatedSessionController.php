@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         if($usertype == 1){
             return redirect()->intended(route('admindashboard', absolute: false));
         }
-        else{
+        else if($usertype == 0){
             return redirect()->intended(route('dashboard', absolute: false));
         }
         

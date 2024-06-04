@@ -33,7 +33,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/aadmindashboard', function () {
+Route::get('/admindashboard', function () {
     return view('admin.pages.dashboard');
 })->middleware(['auth', 'verified'])->name('admindashboard');
 Route::middleware('auth')->group(function () {
