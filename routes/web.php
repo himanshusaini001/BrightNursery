@@ -48,5 +48,13 @@ Route::middleware('auth')->group(function () {
 Route::get('/categories', [categoriesController::class, 'categories'])->name('categories');
 Route::post('/Add/Categories', [categoriesController::class, 'store'])->name('addcategories');
 
-Route::get('/View/categories', [categoriesController::class, 'view'])->name('showcategories');
+// view Route
+Route::get('/showcategories', [categoriesController::class, 'view'])->name('showcategories');
+
+// update Route
+Route::get('/updatecategories/{id}', [categoriesController::class, 'update'])->name('updatecategories');
+Route::put('/Update/categories', [categoriesController::class, 'putcategories'])->name('putcategories');
+// delete Route
+Route::get('/Delete/categories/{id}', [categoriesController::class, 'delete'])->name('deletecategories');
+
 require __DIR__.'/auth.php';

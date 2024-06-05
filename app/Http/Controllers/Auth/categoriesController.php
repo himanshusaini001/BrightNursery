@@ -13,9 +13,20 @@ class categoriesController extends Controller
     public function categories(){
         return view('admin.categories.addcategories');
     }
+
     public function view(categories $categories){
         $data = categories::all();
         return view('admin.categories.view', ['data' => $data]);
+    }
+    
+    public function update(){
+        
+        return view('admin.categories.update');
+    }
+
+    public function delete($id){
+        echo $id;die;
+        return view('admin.categories.view');
     }
 
     public function store(Request $request)
@@ -41,4 +52,31 @@ class categoriesController extends Controller
         }
        
     }
+
+    public function putcategories(Request $request)
+    {
+       $validation = Validator::make($request->all(), [
+            'name'=> 'required | string',
+            'img'=> 'required',
+       ]);
+       if ($validation->fails()) {
+            return redirect()->route('putcategories')
+                            ->withInput()
+                            ->withErrors($validation);
+        }
+
+        if($validation->passes()){
+            $addCategries = categories::create([
+                'name'=>$request->name,
+                'img'=>$request->file('img')->getClientOriginalName(),
+                'status'=>$request->status??0,
+            ]);
+
+            return redirect()->route('showcategories');
+        }
+       
+    }
+
+    
+
 }

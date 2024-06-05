@@ -7,11 +7,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Sh:</th>
                     <th>Name</th>
                     <th>Image</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+                    <th>Updated</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +26,8 @@
                         <td>{{ $id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->img }}</td>
-                        <td>{{ $category->created_at }}</td>
-                        <td>{{ $category->updated_at }}</td>
+                        <td><a href="{{route('updatecategories',$category->id)}}">Edit</a></td>
+                        <td><a href="{{route('deletecategories', ['id' => $category->id])}}">Delete</a></td>
                     </tr>
                 @endforeach
 
