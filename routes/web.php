@@ -12,6 +12,8 @@ use App\Http\Controllers\blogController;
 use App\Http\Controllers\singlePostController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\singleprotfolioController;
+use App\Http\Controllers\Auth\categoriesController;
+use App\Http\Controllers\Auth\productController;
 
 
 Route::get('/home', [homeController::class, 'index'])->name('home');
@@ -36,10 +38,11 @@ Route::get('/dashboard', function () {
 Route::get('/admindashboard', function () {
     return view('admin.pages.dashboard');
 })->middleware(['auth', 'verified'])->name('admindashboard');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::get('/categories', [categoriesController::class, 'addcategories'])->name('categories');
 require __DIR__.'/auth.php';
