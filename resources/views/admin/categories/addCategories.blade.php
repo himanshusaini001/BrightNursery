@@ -19,9 +19,15 @@
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input " name="status" id="status" value="1">
-            <label class="form-check-label" for="status">Status</label>
+        <div class="form-group">
+            <select class="form-control-file @error('status') is-invalid @enderror" id="status" name="status" onchange="checkValidity()">
+                <option>Select</option>
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+            </select>
+            @error('status')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary mt-3 float-right">Submit</button>
     </form>

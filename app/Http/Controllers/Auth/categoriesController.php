@@ -19,9 +19,9 @@ class categoriesController extends Controller
         return view('admin.categories.view', ['data' => $data]);
     }
     
-    public function update(){
-        
-        return view('admin.categories.update');
+    public function update(Request $request, $id = null){
+        $category = categories::findorFail($id);
+        return view('admin.categories.update')->with(compact('category'));
     }
 
     public function delete($id){
@@ -34,6 +34,7 @@ class categoriesController extends Controller
        $validation = Validator::make($request->all(), [
             'name'=> 'required | string',
             'img'=> 'required',
+            'status'=> 'required',
        ]);
        if ($validation->fails()) {
             return redirect()->route('categories')
@@ -45,7 +46,7 @@ class categoriesController extends Controller
             $addCategries = categories::create([
                 'name'=>$request->name,
                 'img'=>$request->file('img')->getClientOriginalName(),
-                'status'=>$request->status??0,
+                'status'=>$request->status,
             ]);
 
             return redirect()->route('showcategories');
@@ -55,26 +56,32 @@ class categoriesController extends Controller
 
     public function putcategories(Request $request)
     {
-       $validation = Validator::make($request->all(), [
-            'name'=> 'required | string',
-            'img'=> 'required',
-       ]);
-       if ($validation->fails()) {
-            return redirect()->route('putcategories')
-                            ->withInput()
-                            ->withErrors($validation);
+      
+        $id = $request->categoryid;
+
+        $validation = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'img' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return redirect()->route('updatecategories',$id)
+                             ->withInput()
+                             ->withErrors($validation);
         }
 
-        if($validation->passes()){
-            $addCategries = categories::create([
-                'name'=>$request->name,
-                'img'=>$request->file('img')->getClientOriginalName(),
-                'status'=>$request->status??0,
-            ]);
-
+       
+       $updateCategory = categories::where('id', $id)->update([
+            'name' => $request->name,
+            'img'=>$request->file('img')->getClientOriginalName(),
+            'status' => $request->status,
+        ]);
+        if($updateCategory)
+        {
             return redirect()->route('showcategories');
         }
-       
+    
     }
 
     

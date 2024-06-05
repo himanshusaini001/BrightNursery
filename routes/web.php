@@ -53,7 +53,7 @@ Route::get('/showcategories', [categoriesController::class, 'view'])->name('show
 
 // update Route
 Route::get('/updatecategories/{id}', [categoriesController::class, 'update'])->name('updatecategories');
-Route::put('/Update/categories', [categoriesController::class, 'putcategories'])->name('putcategories');
+Route::put('/editcategories', [categoriesController::class, 'putcategories'])->name('editcategories');
 // delete Route
 Route::get('/Delete/categories/{id}', [categoriesController::class, 'delete'])->name('deletecategories');
 
