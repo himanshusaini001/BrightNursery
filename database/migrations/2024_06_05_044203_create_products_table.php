@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('cid');
             $table->string('name');
             $table->text('img');
-            $table->integer('stock');
-            $table->float('price');
+            $table->integer('stock')->default(0);
+            $table->float('price')->default(0);
             $table->string('description');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->json('meta')->nullable();
             $table->timestamps();
         
