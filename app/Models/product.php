@@ -21,7 +21,7 @@ class product extends Model
         'img',
         'stock',
         'price',
-        'decription',
+        'description',
         'status',
         'meta',
     ];

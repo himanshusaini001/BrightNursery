@@ -14,7 +14,7 @@ class categoriesController extends Controller
         return view('admin.categories.addcategories');
     }
 
-    public function view(categories $categories){
+    public function view(){
         $data = categories::all();
         return view('admin.categories.view', ['data' => $data]);
     }
