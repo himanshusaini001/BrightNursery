@@ -1,5 +1,8 @@
 @extends('admin.dashboard')
 
+@section('pagename')
+    Category
+@endsection
 @section('data')
 
     <div class="container">

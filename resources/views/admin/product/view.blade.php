@@ -1,9 +1,11 @@
 @extends('admin.dashboard')
 
-
+@section('pagename')
+    Product
+@endsection
 @section('data')
     <div class="container">
-        <h1 class="my-4">Categories</h1>
+        <h1 class="my-4">Products</h1>
         <table id="datatable" class="table table-striped">
             <thead>
                 <tr>
