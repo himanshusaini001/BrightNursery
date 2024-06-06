@@ -27,7 +27,14 @@
                         <td>{{ $id }}</td>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->img }}</td>
-                        <td>{{ $category->status }}</td>
+                        @php
+                            if($category->status == 1){
+                                $status = '<span style="color: green;">Active</span>';
+                            } else {
+                                $status = '<span style="color: red;">Inactive</span>';
+                            }
+                        @endphp
+                        <td> {!! $status !!}</td>
                         <td><a href="{{route('updatecategories',$category->id)}}">Edit</a></td>
                         <td><a href="{{route('deletecategories', ['id' => $category->id])}}">Delete</a></td>
                     </tr>

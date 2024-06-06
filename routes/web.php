@@ -55,6 +55,6 @@ Route::get('/showcategories', [categoriesController::class, 'view'])->name('show
 Route::get('/updatecategories/{id}', [categoriesController::class, 'update'])->name('updatecategories');
 Route::put('/editcategories', [categoriesController::class, 'putcategories'])->name('editcategories');
 // delete Route
-Route::get('/Delete/categories/{id}', [categoriesController::class, 'delete'])->name('deletecategories');
+Route::get('/Delete/categories/{id}', [categoriesController::class, 'destroy'])->name('deletecategories');
 
 require __DIR__.'/auth.php';

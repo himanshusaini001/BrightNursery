@@ -24,66 +24,89 @@ class categoriesController extends Controller
         return view('admin.categories.update')->with(compact('category'));
     }
 
-    public function delete($id){
-        echo $id;die;
-        return view('admin.categories.view');
+    public function destroy($id)
+    {
+        try {
+            // Find the category by ID or fail
+            $category = categories::find($id);
+           
+            if($category){
+                // Delete the category
+                $category->delete();
+                    
+                // Optionally, return a success response
+                return redirect()->route('showcategories');
+            }
+           
+        } catch (\Exception $e) {
+            // Handle the exception and return an error response
+            return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
+        }
     }
-
     public function store(Request $request)
     {
-       $validation = Validator::make($request->all(), [
-            'name'=> 'required | string',
-            'img'=> 'required',
-            'status'=> 'required',
-       ]);
-       if ($validation->fails()) {
-            return redirect()->route('categories')
-                            ->withInput()
-                            ->withErrors($validation);
-        }
 
-        if($validation->passes()){
-            $addCategries = categories::create([
-                'name'=>$request->name,
-                'img'=>$request->file('img')->getClientOriginalName(),
-                'status'=>$request->status,
-            ]);
-
-            return redirect()->route('showcategories');
+        try{
+            $validation = Validator::make($request->all(), [
+                'name'=> 'required | string',
+                'img'=> 'required',
+                'status'=> 'required',
+           ]);
+           if ($validation->fails()) {
+                return redirect()->route('categories')
+                                ->withInput()
+                                ->withErrors($validation);
+            }
+    
+            if($validation->passes()){
+                $addCategries = categories::create([
+                    'name'=>$request->name,
+                    'img'=>$request->file('img')->getClientOriginalName(),
+                    'status'=>$request->status,
+                ]);
+    
+                return redirect()->route('showcategories');
+            }
         }
-       
+        catch (\Exception $e) {
+            // Handle the exception and return an error response
+            return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
+        }
     }
 
     public function putcategories(Request $request)
     {
-      
-        $id = $request->categoryid;
+        try{
+            $id = $request->categoryid;
 
-        $validation = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'img' => 'required',
-            'status' => 'required',
-        ]);
+            $validation = Validator::make($request->all(), [
+                'name' => 'required|string',
+                'img' => 'required',
+                'status' => 'required',
+            ]);
 
-        if ($validation->fails()) {
-            return redirect()->route('updatecategories',$id)
-                             ->withInput()
-                             ->withErrors($validation);
+            if ($validation->fails()) {
+                return redirect()->route('updatecategories',$id)
+                                ->withInput()
+                                ->withErrors($validation);
+            }
+
+        
+        $updateCategory = categories::where('id', $id)->update([
+                'name' => $request->name,
+                'img'=>$request->file('img')->getClientOriginalName(),
+                'status' => $request->status,
+            ]);
+            if($updateCategory)
+            {
+                return redirect()->route('showcategories');
+            }
         }
-
-       
-       $updateCategory = categories::where('id', $id)->update([
-            'name' => $request->name,
-            'img'=>$request->file('img')->getClientOriginalName(),
-            'status' => $request->status,
-        ]);
-        if($updateCategory)
-        {
-            return redirect()->route('showcategories');
+        catch (\Exception $e) {
+            // Handle the exception and return an error response
+            return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
         }
-    
+        
     }
-
-    
 
 }
