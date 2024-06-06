@@ -1,3 +1,11 @@
+<style>.nav-link.text-body.font-weight-bold.px-0 {
+  display: none;
+}
+.formbutton {
+  margin-top: 15px;
+}
+</style>
+
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
@@ -18,12 +26,13 @@
             <li class="nav-item d-flex align-items-center">
               <a href="" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" class="formbutton">
                   @csrf
 
-                  <x-dropdown-link :href="route('logout')"
-                          onclick="event.preventDefault();
-                                      this.closest('form').submit();">
+                  <x-dropdown-link :href="route('logout')" 
+                                  class="btn btn-primary"
+                                  onclick="event.preventDefault();
+                                            this.closest('form').submit();">
                       {{ __('Log Out') }}
                   </x-dropdown-link>
               </form>
