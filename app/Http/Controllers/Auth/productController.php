@@ -23,8 +23,9 @@ class productController extends Controller
     }
     
     public function update(Request $request, $id = null){
-        $category = product::findorFail($id);
-        return view('admin.categories.update')->with(compact('category'));
+        $product = product::findorFail($id);
+        $categories = categories::all();
+        return view('admin.product.update')->with(compact('product','categories'));
     }
 
     public function destroy($id)
@@ -38,7 +39,7 @@ class productController extends Controller
                 $category->delete();
                     
                 // Optionally, return a success response
-                return redirect()->route('showcategories');
+                return redirect()->route('showproduct');
             }
            
         } catch (\Exception $e) {
@@ -48,6 +49,60 @@ class productController extends Controller
     }
     public function store(Request $request)
     {
+       try{
+        $validation = Validator::make($request->all(), [
+            'category' => 'required',
+            'name' => 'required|string',
+            'img' => 'required',
+            'stock' => 'required|integer',
+            'price' => 'required|integer',
+            'description' => 'required',
+            'status' => 'required',
+            'metadescription' => 'required',
+            'metatitle' => 'required',
+            
+        ]);
+       if ($validation->fails()) {
+            return redirect()->route('product')
+                            ->withInput()
+                            ->withErrors($validation);
+        }
+        $combinedMetaFields = [
+            'meta_description' => $request->input('metadescription'),
+            'meta_title' => $request->input('metatitle'),
+        ];
+
+        // Convert the combined fields array to JSON
+        $combinedFieldsJson = json_encode($combinedMetaFields);
+    
+        if($validation->passes()){
+            
+            $addCategries = product::create([
+                'cid'=>$request->category,
+                'name'=>$request->name,
+               'img'=>$request->file('img')->getClientOriginalName(),
+                'stock'=>$request->stock,
+                'price'=>$request->price,
+                'description'=>$request->description,
+                'status'=>$request->status,
+                'meta'=>$combinedFieldsJson,
+            ]);
+           
+            return redirect()->route('showproduct');
+
+        }
+       }
+        catch (\Exception $e) {
+            // Handle the exception and return an error response
+            return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function putcategories(Request $request)
+    {
+        try{
+            $id = $request->categoryid;
+
             $validation = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string',
@@ -60,66 +115,39 @@ class productController extends Controller
                 'metatitle' => 'required',
                 
             ]);
-           if ($validation->fails()) {
-                return redirect()->route('product')
-                                ->withInput()
-                                ->withErrors($validation);
-            }
-            $combinedMetaFields = [
-                'meta_description' => $request->input('meta_description'),
-                'meta_title' => $request->input('meta_title'),
-            ];
-
-            // Convert the combined fields array to JSON
-            $combinedFieldsJson = json_encode($combinedMetaFields);
-           
-            if($validation->passes()){
-                
-                $addCategries = product::create([
-                    'cid'=>$request->category,
-                    'name'=>$request->name,
-                   'img'=>$request->file('img')->getClientOriginalName(),
-                    'stock'=>$request->stock,
-                    'price'=>$request->price,
-                    'description'=>$request->description,
-                    'status'=>$request->status,
-                    'meta'=>$combinedFieldsJson,
-                ]);
-               
-                return redirect()->route('showproduct');
-
-            }
-       
-    }
-
-    public function putcategories(Request $request)
-    {
-        try{
-            $id = $request->categoryid;
-
-            $validation = Validator::make($request->all(), [
-                'name' => 'required|string',
-                'img' => 'required',
-                'status' => 'required',
-            ]);
 
             if ($validation->fails()) {
-                return redirect()->route('updatecategories',$id)
+                return redirect()->route('updateproduct',$id)
                                 ->withInput()
                                 ->withErrors($validation);
             }
 
+            if($validation){
+                $combinedMetaFields = [
+                    'meta_description' => $request->input('metadescription'),
+                    'meta_title' => $request->input('metatitle'),
+                ];
+    
+                    // Convert the combined fields array to JSON
+                    $combinedFieldsJson = json_encode($combinedMetaFields);
+                    
+                $updateCategory = product::where('id', $id)->update([
+                            'cid'=>$request->category,
+                            'name'=>$request->name,
+                            'img'=>$request->file('img')->getClientOriginalName(),
+                            'stock'=>$request->stock,
+                            'price'=>$request->price,
+                            'description'=>$request->description,
+                            'status'=>$request->status,
+                            'meta'=>$combinedFieldsJson,
+                    ]);
+                    if($updateCategory)
+                    {
         
-        $updateCategory = product::where('id', $id)->update([
-                'name' => $request->name,
-                'img'=>$request->file('img')->getClientOriginalName(),
-                'status' => $request->status,
-            ]);
-            if($updateCategory)
-            {
-
-                return redirect()->route('showcategories');
+                        return redirect()->route('showproduct');
+                    }
             }
+           
         }
         catch (\Exception $e) {
             // Handle the exception and return an error response
