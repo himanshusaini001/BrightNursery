@@ -270,3 +270,14 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../admin/assets/js/material-dashboard.min.js?v=3.0.0"></script>
+
+   <!-- DataTables JS -->
+   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+   <!-- Your other scripts -->
+  
+<script>
+  $(document).ready(function() {
+      $('#datatable').DataTable();
+  });
+</script>

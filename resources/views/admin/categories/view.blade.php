@@ -4,7 +4,7 @@
 
     <div class="container">
         <h1 class="my-4">Categories</h1>
-        <table class="table table-striped">
+        <table id="datatable" class="table table-striped">
             <thead>
                 <tr>
                     <th>Sh:</th>
