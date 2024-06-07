@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class productController extends Controller
 {
+
     public function product(){
         $data = categories::all();
         return view('admin.product.addproduct',['data' => $data]);
@@ -28,15 +29,17 @@ class productController extends Controller
         return view('admin.product.update')->with(compact('product','categories'));
     }
 
+    //  Delete Product 
     public function destroy($id)
     {
         try {
+
             // Find the category by ID or fail
-            $category = product::find($id);
+            $product = product::find($id);
            
-            if($category){
+            if($product){
                 // Delete the category
-                $category->delete();
+                $product->delete();
                     
                 // Optionally, return a success response
                 return redirect()->route('showproduct');
@@ -47,6 +50,8 @@ class productController extends Controller
             return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
         }
     }
+
+    // Create Product 
     public function store(Request $request)
     {
        try{

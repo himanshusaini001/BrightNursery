@@ -62,7 +62,7 @@ Add Product :
                         @endphp
                         <td> {!! $status !!}</td>
                         <td><a href="{{route('updateproduct',$products->id)}}">Edit</a></td>
-                        <td><a href="{{route('deletecategories', ['id' => $products->id])}}">Delete</a></td>
+                        <td><a href="{{route('deleteproduct', ['id' => $products->id])}}">Delete</a></td>
                     </tr>
                 @endforeach
 

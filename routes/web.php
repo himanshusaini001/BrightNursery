@@ -55,7 +55,7 @@ Route::get('/showcategories', [categoriesController::class, 'view'])->name('show
 Route::get('/updatecategories/{id}', [categoriesController::class, 'update'])->name('updatecategories');
 Route::put('/editcategories', [categoriesController::class, 'putcategories'])->name('editcategories');
 // delete Route
-Route::get('/Delete/categories/{id}', [categoriesController::class, 'destroy'])->name('deletecategories');
+Route::get('/destroy/categories/{id}', [categoriesController::class, 'destroy'])->name('deletecategories');
 
 
 // Product Route
@@ -69,6 +69,6 @@ Route::get('/showproduct', [productController::class, 'view'])->name('showproduc
 Route::get('/updateproduct/{id}', [productController::class, 'update'])->name('updateproduct');
 Route::put('/editproduct', [productController::class, 'putproduct'])->name('editproduct');
 // delete Route
-Route::get('/Delete/product/{id}', [productController::class, 'destroy'])->name('deleteproduct');
+Route::get('/destroy/product/{id}', [productController::class, 'destroy'])->name('deleteproduct');
 
 require __DIR__.'/auth.php';
