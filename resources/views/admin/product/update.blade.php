@@ -10,7 +10,7 @@
   
 @endphp
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">
-    <form action="{{route('editcategories')}}" method="POST" enctype="multipart/form-data" class="custom-form">
+    <form action="{{route('editproduct')}}" method="POST" enctype="multipart/form-data" class="custom-form">
         @csrf
         @method('PUT')
         <div class="row">

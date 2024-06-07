@@ -67,7 +67,7 @@ Route::get('/showproduct', [productController::class, 'view'])->name('showproduc
 
 // update Route
 Route::get('/updateproduct/{id}', [productController::class, 'update'])->name('updateproduct');
-Route::put('/editcategories', [productController::class, 'putcategories'])->name('editcategories');
+Route::put('/editproduct', [productController::class, 'putproduct'])->name('editproduct');
 // delete Route
 Route::get('/Delete/product/{id}', [productController::class, 'destroy'])->name('deleteproduct');
 
