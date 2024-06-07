@@ -24,6 +24,9 @@ Add Categories.
         <div class="form-group">
             <label for="img">Image :</label>
             <input type="file" class="form-control-file @error('img') is-invalid @enderror" value="{{$category->img}}" name="img" id="img" >
+            @if($category->img)
+            <img src="{{ asset('storage/img/category/' . $category->img) }}" width="50px" height="50px"></td>
+            @endif
             @error('img')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror

@@ -38,7 +38,7 @@ Add Categories :
                     <tr>
                         <td>{{ $id }}</td>
                         <td>{{ $category->name }}</td>
-                        <td>{{ $category->img }}</td>
+                        <td> <img src="{{ asset('storage/img/category/' . $category->img) }}" width="50px" height="50px"></td>
                         @php
                             if($category->status == 1){
                                 $status = '<span style="color: green;">Active</span>';

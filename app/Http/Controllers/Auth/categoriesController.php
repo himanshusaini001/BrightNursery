@@ -45,34 +45,43 @@ class categoriesController extends Controller
     }
     public function store(Request $request)
     {
-
-        try{
+        try {
             $validation = Validator::make($request->all(), [
-                'name'=> 'required | string',
-                'img'=> 'required',
-                'status'=> 'required',
-           ]);
-           if ($validation->fails()) {
+                'name' => 'required|string',
+                'img' => 'required|image', // Assuming img is an image file
+                'status' => 'required',
+            ]);
+    
+            if ($validation->fails()) {
                 return redirect()->route('categories')
-                                ->withInput()
-                                ->withErrors($validation);
+                    ->withInput()
+                    ->withErrors($validation->errors()->all());
             }
     
-            if($validation->passes()){
-                $addCategries = categories::create([
-                    'name'=>$request->name,
-                    'img'=>$request->file('img')->getClientOriginalName(),
-                    'status'=>$request->status,
-                ]);
+            $filename = ''; // Define filename variable
     
-                return redirect()->route('showcategories');
+            if ($request->hasFile('img')) {
+                $destination_path = 'public/img/category';
+                $image = $request->file('img');
+                $image_name = $image->getClientOriginalName();
+                $path = $image->storeAs($destination_path, $image_name);
+    
+                $filename = $image_name; // Assign filename
             }
-        }
-        catch (\Exception $e) {
+    
+            $addCategories = categories::create([
+                'name' => $request->name,
+                'img' => $filename, // Use filename here
+                'status' => $request->status,
+            ]);
+    
+            return redirect()->route('showcategories');
+        } catch (\Exception $e) {
             // Handle the exception and return an error response
-            return response()->json(['message' => 'Category not found or could not be deleted', 'error' => $e->getMessage()], 400);
+            return response()->json(['message' => 'Category not found or could not be created', 'error' => $e->getMessage()], 400);
         }
     }
+    
 
     public function putcategories(Request $request)
     {
@@ -91,8 +100,7 @@ class categoriesController extends Controller
                                 ->withErrors($validation);
             }
 
-        
-        $updateCategory = categories::where('id', $id)->update([
+            $updateCategory = categories::where('id', $id)->update([
                 'name' => $request->name,
                 'img'=>$request->file('img')->getClientOriginalName(),
                 'status' => $request->status,
