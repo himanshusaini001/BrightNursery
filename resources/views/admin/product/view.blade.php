@@ -3,6 +3,14 @@
 @section('pagename')
     Product
 @endsection
+@section('option')
+Add Product :
+@endsection
+
+
+@section('button')
+<a class="btn btn-primary" href="{{route('product')}}">Add Product</a>
+@endsection
 @section('data')
     <div class="container">
         <h1 class="my-4">Products</h1>

@@ -1,0 +1,25 @@
+
+.fixed-plugin .card {
+  position: fixed !important;
+
+  right: -360px;
+
+  top: 0;
+
+  height: auto;
+
+  left: auto !important;
+
+  transform: unset !important;
+
+  width: 360px;
+
+  border-radius: 0;
+
+  padding: 0 10px;
+
+  transition: .2s ease;
+
+  z-index: 1020;
+
+}

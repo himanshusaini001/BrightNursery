@@ -1,5 +1,9 @@
 @extends('admin.dashboard')
 
+@section('option')
+Add Categories.
+@endsection
+
 @section('form')
 
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">

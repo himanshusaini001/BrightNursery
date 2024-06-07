@@ -1,5 +1,13 @@
 @extends('admin.dashboard')
 
+@section('option')
+Add Categories :
+@endsection
+
+@section('button')
+<a class="btn btn-primary" href="{{route('categories')}}">Add Category</a>
+@endsection
+
 @section('pagename')
     Category
 @endsection
