@@ -114,7 +114,7 @@
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <input type="hidden" class="form-control-file " name="categoryid" id="categoryid" value="{{$product->id}}">
+        <input type="hidden" class="form-control-file " name="productid" id="productid" value="{{$product->id}}">
         <button type="submit" class="btn btn-primary mt-3 float-right">Submit</button>
     </form>
   </div>

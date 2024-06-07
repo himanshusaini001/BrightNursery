@@ -109,15 +109,14 @@ class productController extends Controller
         }
     }
 
-    public function putcategories(Request $request)
+    public function putproduct(Request $request)
     {
         try{
-            $id = $request->categoryid;
+            $id = $request->productid;
 
             $validation = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string',
-                'img' => 'required',
                 'stock' => 'required|integer',
                 'price' => 'required|integer',
                 'description' => 'required',
@@ -133,6 +132,23 @@ class productController extends Controller
                                 ->withErrors($validation);
             }
 
+            // Select img update
+            if( $request->img == ''){
+                $product = product::find($request->productid);
+                $duplicateimg =  $product->img;
+            }
+
+            $filename = ''; // Define filename variable
+    
+            if ($request->hasFile('img')) {
+                $destination_path = 'public/img/product';
+                $image = $request->file('img');
+                $image_name = $image->getClientOriginalName();
+                $path = $image->storeAs($destination_path, $image_name);
+    
+                $filename = $image_name; // Assign filename
+            }
+
             if($validation){
                 $combinedMetaFields = [
                     'meta_description' => $request->input('metadescription'),
@@ -142,7 +158,19 @@ class productController extends Controller
                     // Convert the combined fields array to JSON
                     $combinedFieldsJson = json_encode($combinedMetaFields);
                     
-                $updateCategory = product::where('id', $id)->update([
+                    if($request->img == ''){
+                        $updateCategory = product::where('id', $id)->update([
+                            'cid'=>$request->category,
+                            'name'=>$request->name,
+                            'img'=>$duplicateimg,
+                            'stock'=>$request->stock,
+                            'price'=>$request->price,
+                            'description'=>$request->description,
+                            'status'=>$request->status,
+                            'meta'=>$combinedFieldsJson,
+                    ]);
+                    }else{
+                        $updateCategory = product::where('id', $id)->update([
                             'cid'=>$request->category,
                             'name'=>$request->name,
                             'img'=>$request->file('img')->getClientOriginalName(),
@@ -152,6 +180,8 @@ class productController extends Controller
                             'status'=>$request->status,
                             'meta'=>$combinedFieldsJson,
                     ]);
+                    }
+               
                     if($updateCategory)
                     {
         
