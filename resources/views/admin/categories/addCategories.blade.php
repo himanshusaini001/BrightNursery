@@ -14,20 +14,21 @@ Add Categories.
     <form action="{{route('addcategories')}}" method="POST" enctype="multipart/form-data" class="custom-form">
         @csrf
         <div class="form-group">
-            <label for="name">Name:</label>
+            <label for="name">Name :</label>
             <input type="text" class="form-control-file  @error('name') is-invalid @enderror" name="name" id="name" >
             @error('name')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
         <div class="form-group">
-            <label for="img">Image:</label>
+            <label for="img">Image :</label>
             <input type="file" class="form-control-file @error('img') is-invalid @enderror" name="img" id="img" >
             @error('img')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
         <div class="form-group">
+            <label for="Status">Status :</label>
             <select class="form-control-file @error('status') is-invalid @enderror" id="status" name="status" onchange="checkValidity()">
                 <option>Select</option>
                 <option value="1">Active</option>
