@@ -1,11 +1,12 @@
+{{-- Extand Main Html Page --}}
 @extends('admin.dashboard')
 
-
-
+{{-- Add Text Setting Popup --}}
 @section('pagename')
     Product
 @endsection
 
+{{-- Add Text Form --}}
 @section('form')
 
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">

@@ -1,9 +1,12 @@
+{{-- Extand Main Html Page --}}
 @extends('admin.dashboard')
 
+{{-- Add Text header --}}
 @section('pagename')
     Product
 @endsection
 
+{{-- Add Text Form --}}
 @section('form')
 @php
     $meta = json_decode($product->meta);

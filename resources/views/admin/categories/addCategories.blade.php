@@ -1,14 +1,17 @@
-
+{{-- Extand Main Html Page --}}
 @extends('admin.dashboard')
 
+{{-- Add Text Setting Popup --}}
 @section('option')
 Add Categories.
 @endsection
 
+{{-- Add Text header --}}
 @section('pagename')
     Category
 @endsection
 
+{{-- Add Text Form --}}
 @section('form')
 
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">

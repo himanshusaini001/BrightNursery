@@ -1,17 +1,21 @@
+{{-- Extand Main Html Page --}}
 @extends('admin.dashboard')
 
+{{-- Add Text Setting Popup --}}
 @section('option')
 Add Categories :
 @endsection
 
+{{-- Add button in popup  --}}
 @section('button')
 <a class="btn btn-primary" href="{{route('categories')}}">Add Category</a>
 @endsection
-
+{{-- Add Text header --}}
 @section('pagename')
     Category
 @endsection
 
+{{-- Add Text Form --}}
 @section('data')
 
     <div class="container">

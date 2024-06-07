@@ -1,16 +1,22 @@
+{{-- Extand Main Html Page --}}
 @extends('admin.dashboard')
 
+{{-- Add Text header --}}
 @section('pagename')
     Product
 @endsection
-
 @section('option')
 Add Product :
 @endsection
 
+{{-- Add button in popup  --}}
+
 @section('button')
 <a class="btn btn-primary" href="{{route('product')}}">Add Product</a>
 @endsection
+
+
+{{-- Add Text Form Data --}}
 @section('data')
     <div class="container">
         <h1 class="my-4">Products</h1>
