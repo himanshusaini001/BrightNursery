@@ -43,40 +43,41 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+    
 // Categories Route
-Route::get('/categories', [categoriesController::class, 'categories'])->name('categories');
-Route::post('/Add/Categories', [categoriesController::class, 'store'])->name('addcategories');
-
-// view Route
 
 Route::prefix('admin/categoy')->group(function () {
     // Categories Route
-    Route::get('/show', [CategoriesController::class, 'categories'])->name('categories');
+    Route::get('/Show', [CategoriesController::class, 'categories'])->name('categories');
     Route::post('/Add', [CategoriesController::class, 'store'])->name('addcategories');
 
     // View Route
     Route::get('/view', [CategoriesController::class, 'view'])->name('showcategories');
 
     // Update Route
-    Route::get('/update/{id}', [CategoriesController::class, 'update'])->name('updatecategories');
+    Route::get('/Update/{id}', [CategoriesController::class, 'update'])->name('updatecategories');
     Route::put('/Edit', [CategoriesController::class, 'putcategories'])->name('editcategories');
 
     // Delete Route
-    Route::get('/destroy/{id}', [CategoriesController::class, 'destroy'])->name('deletecategories');
+    Route::get('/Destroy/{id}', [CategoriesController::class, 'destroy'])->name('deletecategories');
 });
 
 // Product Route
-Route::get('/product', [productController::class, 'product'])->name('product');
-Route::post('/Add/Product', [productController::class, 'store'])->name('addproduct');
 
-// view Route
-Route::get('/showproduct', [productController::class, 'view'])->name('showproduct');
+Route::prefix('admin/product')->group(function () {
 
-// update Route
-Route::get('/updateproduct/{id}', [productController::class, 'update'])->name('updateproduct');
-Route::put('/editproduct', [productController::class, 'putproduct'])->name('editproduct');
-// delete Route
-Route::get('/destroy/product/{id}', [productController::class, 'destroy'])->name('deleteproduct');
-
+    Route::get('/Show', [productController::class, 'product'])->name('product');
+    Route::post('/Add', [productController::class, 'store'])->name('addproduct');
+    
+    // view Route
+    Route::get('/View', [productController::class, 'view'])->name('showproduct');
+    
+    // update Route
+    Route::get('/Update/{id}', [productController::class, 'update'])->name('updateproduct');
+    Route::put('/Edit', [productController::class, 'putproduct'])->name('editproduct');
+    // delete Route
+    Route::get('/Destroy/{id}', [productController::class, 'destroy'])->name('deleteproduct');
+    
+});
+});
 require __DIR__.'/auth.php';

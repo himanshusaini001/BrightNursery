@@ -26,7 +26,7 @@ Add Categories.
         </div>
         <div class="form-group">
             <label for="img">Image :</label>
-            <input type="file" class="form-control-file @error('img') is-invalid @enderror" name="img" id="img" >
+            <input type="file" class="form-control-file @error('img') is-invalid @enderror" name="img" id="img" style="width: 100%;">
             @error('img')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror

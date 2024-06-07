@@ -31,10 +31,10 @@ class AuthenticatedSessionController extends Controller
         $usertype = $request->user()->usertype;
         
         if($usertype == 1){
-            return redirect()->intended(route('admindashboard', absolute: false));
+            return redirect()->intended(route('showcategories', absolute: false));
         }
         else if($usertype == 0){
-            return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->intended(route('showcategories', absolute: false));
         }
         
     }
