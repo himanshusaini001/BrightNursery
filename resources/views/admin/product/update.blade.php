@@ -1,5 +1,9 @@
 @extends('admin.dashboard')
 
+@section('pagename')
+    Product
+@endsection
+
 @section('form')
 @php
     $meta = json_decode($product->meta);

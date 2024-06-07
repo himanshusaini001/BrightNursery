@@ -4,9 +4,10 @@
 Add Categories.
 @endsection
 
-@section('button')
-<a href="{{route()}}">Add Category</a>
+@section('pagename')
+    Category
 @endsection
+
 @section('form')
 
 <div class="col-xl-12 col-sm-6 mb-xl-0 mb-4">

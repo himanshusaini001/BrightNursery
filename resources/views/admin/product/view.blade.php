@@ -3,10 +3,10 @@
 @section('pagename')
     Product
 @endsection
+
 @section('option')
 Add Product :
 @endsection
-
 
 @section('button')
 <a class="btn btn-primary" href="{{route('product')}}">Add Product</a>
