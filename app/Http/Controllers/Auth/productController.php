@@ -77,6 +77,17 @@ class productController extends Controller
     
         if($validation->passes()){
             
+            $filename = ''; // Define filename variable
+    
+            if ($request->hasFile('img')) {
+                $destination_path = 'public/img/product';
+                $image = $request->file('img');
+                $image_name = $image->getClientOriginalName();
+                $path = $image->storeAs($destination_path, $image_name);
+    
+                $filename = $image_name; // Assign filename
+            }
+
             $addCategries = product::create([
                 'cid'=>$request->category,
                 'name'=>$request->name,

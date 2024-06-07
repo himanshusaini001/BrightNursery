@@ -47,7 +47,7 @@ Add Product :
                            @endphp
                         @endforeach
                         <td>{{ $category }}</td>
-                        <td>{{ $products->name }}</td>
+                        <td><img src="{{ asset('storage/img/product/' . $products->img) }}" width="50px" height="50px"></td>
                         <td>{{ $products->img }}</td>
                         <td>{{ $products->stock }}</td>
                         <td>{{ $products->price }}</td>
