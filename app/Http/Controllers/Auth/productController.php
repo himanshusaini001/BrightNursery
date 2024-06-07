@@ -55,6 +55,7 @@ class productController extends Controller
     public function store(Request $request)
     {
        try{
+        // Vlaidation 
         $validation = Validator::make($request->all(), [
             'category' => 'required',
             'name' => 'required|string',
@@ -67,11 +68,14 @@ class productController extends Controller
             'metatitle' => 'required',
             
         ]);
+        // Snad Validation Error in Product Page
        if ($validation->fails()) {
             return redirect()->route('product')
                             ->withInput()
                             ->withErrors($validation);
         }
+
+        // Create Array in meta tag
         $combinedMetaFields = [
             'meta_description' => $request->input('metadescription'),
             'meta_title' => $request->input('metatitle'),
@@ -93,6 +97,7 @@ class productController extends Controller
                 $filename = $image_name; // Assign filename
             }
 
+            // Create product 
             $addCategries = product::create([
                 'cid'=>$request->category,
                 'name'=>$request->name,
@@ -104,6 +109,7 @@ class productController extends Controller
                 'meta'=>$combinedFieldsJson,
             ]);
            
+            // Redirect View page in Product
             return redirect()->route('showproduct');
 
         }
