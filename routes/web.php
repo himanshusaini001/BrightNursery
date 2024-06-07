@@ -49,14 +49,22 @@ Route::get('/categories', [categoriesController::class, 'categories'])->name('ca
 Route::post('/Add/Categories', [categoriesController::class, 'store'])->name('addcategories');
 
 // view Route
-Route::get('/showcategories', [categoriesController::class, 'view'])->name('showcategories');
 
-// update Route
-Route::get('/updatecategories/{id}', [categoriesController::class, 'update'])->name('updatecategories');
-Route::put('/editcategories', [categoriesController::class, 'putcategories'])->name('editcategories');
-// delete Route
-Route::get('/destroy/categories/{id}', [categoriesController::class, 'destroy'])->name('deletecategories');
+Route::prefix('admin/categoy')->group(function () {
+    // Categories Route
+    Route::get('/show', [CategoriesController::class, 'categories'])->name('categories');
+    Route::post('/Add', [CategoriesController::class, 'store'])->name('addcategories');
 
+    // View Route
+    Route::get('/view', [CategoriesController::class, 'view'])->name('showcategories');
+
+    // Update Route
+    Route::get('/update/{id}', [CategoriesController::class, 'update'])->name('updatecategories');
+    Route::put('/Edit', [CategoriesController::class, 'putcategories'])->name('editcategories');
+
+    // Delete Route
+    Route::get('/destroy/{id}', [CategoriesController::class, 'destroy'])->name('deletecategories');
+});
 
 // Product Route
 Route::get('/product', [productController::class, 'product'])->name('product');
