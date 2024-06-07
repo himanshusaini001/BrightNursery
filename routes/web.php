@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\categoriesController;
 use App\Http\Controllers\Auth\productController;
 
 
-Route::get('/home', [homeController::class, 'index'])->name('home');
+Route::get('/', [homeController::class, 'index'])->name('home');
 Route::get('/about', [aboutController::class, 'about'])->name('about');
 Route::get('/blog', [blogController::class, 'blog'])->name('blog');
 Route::get('/cart', [cartController::class, 'cart'])->name('cart');
@@ -27,7 +27,7 @@ Route::get('/shop', [shopController::class, 'shop'])->name('shop');
 Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
-Route::get('/', function () {
+Route::get('/index', function () {
     return view('welcome');
 });
 
