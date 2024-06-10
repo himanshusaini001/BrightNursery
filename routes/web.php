@@ -29,9 +29,12 @@ Route::get('/shop', [shopController::class, 'shop'])->name('shop');
 Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
+
+Route::get('/shop/{id}', [shopController::class, 'shop'])->name('shopid');
+
 Route::get('/index', function () {
     return view('welcome');
-});
+}); 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -62,6 +65,7 @@ Route::middleware('auth')->group(function () {
 
         // Delete Route
         Route::get('/Destroy/{id}', [CategoriesController::class, 'destroy'])->name('deletecategories');
+         Route::get('/Show', [CategoriesController::class, 'categories'])->name('categories');
     });
 
     // Product Route

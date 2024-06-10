@@ -10,7 +10,11 @@ use PHPUnit\TextUI\Configuration\Php;
 
 class shopController extends Controller
 {
-    public function shop(){
+    public function shop($id = null){
+
+        if(isset($id)){
+            dd($id);die;
+        }
         $category = categories::all();
         
         $categoryId = $category->pluck('id'); 
@@ -18,7 +22,11 @@ class shopController extends Controller
         $products = Product::whereIn('cid', $categoryId)->get();
         
         $totalProduct = $products->count();
+
+      
         return view('frontend.shop',['category'=>$category,'product'=>$products,'totalProduct'=>$totalProduct]);
+        
+        
     }
 
     

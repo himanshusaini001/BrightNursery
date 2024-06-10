@@ -97,7 +97,7 @@
                                         <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck{{$categoryid->id}}">
                                             <label class="custom-control-label" for="customCheck{{$categoryid->id}}">
-                                                <a href="">{{$categoryid->name}}</a>
+                                                <a href="{{route('shopid',$categoryid->id)}}">{{$categoryid->name}}</a>
                                                 <span class="text-muted">({{$count}})</span>
                                             </label>
                                         </div>
