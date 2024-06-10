@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class categoriesController extends Controller
 {
@@ -101,7 +103,8 @@ class categoriesController extends Controller
         try{
             // Select id
             $id = $request->categoryid;
-            
+            $model = categories::findOrFail($id);
+
             // Validatoion 
             $validation = Validator::make($request->all(), [
                 'name' => 'required|string',
@@ -121,11 +124,13 @@ class categoriesController extends Controller
                 $duplicateimg =  $category->img;
             }
 
+
+
             // Upload img in Storage Folder
             $filename = ''; // Define filename variable
     
             if ($request->hasFile('img')) {
-                $destination_path = 'public/img/category';
+                $destination_path = 'public/img/category/';
                 $image = $request->file('img');
                 $image_name = $image->getClientOriginalName();
                 $path = $image->storeAs($destination_path, $image_name);
@@ -142,6 +147,10 @@ class categoriesController extends Controller
                     'status' => $request->status,
                 ]);
             }else{
+                if ($model->img) {
+                    Storage::delete('public/img/category/' . $model->img);
+                }
+
                 // Snad Update Data in Category Table 
                 $updateCategory = categories::where('id', $id)->update([
                     'name' => $request->name,
