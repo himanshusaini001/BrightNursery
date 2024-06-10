@@ -1,8 +1,6 @@
     @extends('main')
     @section('content')
-  @php
-    $count =0;
-  @endphp
+ 
        
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
@@ -35,7 +33,7 @@
                     <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
                         <!-- Shop Page Count -->
                         <div class="shop-page-count">
-                            <p>Showing 1–9 of 72 results</p>
+                            <p>Showing 1–9 of {{$totalProduct}} results</p>
                         </div>
                         <!-- Search by Terms -->
                         <div class="search_by_terms">
@@ -219,7 +217,7 @@
                                             </div>
                                             <div class="product-meta d-flex">
                                                 <a href="#" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
-                                                <a href="cart.html" class="add-to-cart-btn">Add to cart</a>
+                                                <a href="{{route('cart')}}" class="add-to-cart-btn">Add to cart</a>
                                                 <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
                                             </div>
                                         </div>
