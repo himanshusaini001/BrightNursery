@@ -126,7 +126,7 @@ class productController extends Controller
     {
         try{
             $id = $request->productid;
-            $model = categories::findOrFail($id);
+            $model = product::findOrFail($id);
             $validation = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string',
