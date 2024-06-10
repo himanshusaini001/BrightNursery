@@ -28,7 +28,7 @@
                 <label for="img">Image:</label>
                 <input type="file" class="form-control-file @error('img') is-invalid @enderror" name="img" id="img">
                 @if($category->img)
-                    <img src="{{ asset('storage/img/category/' . $category->img) }}" width="50px" height="50px">
+                    <img src="{{ asset('storage/img/category/' . $category->img) }}" width="100px" height="100px" class="mt-3">
                 @endif
                 @error('img')
                     <p class="invalid-feedback">{{ $message }}</p>

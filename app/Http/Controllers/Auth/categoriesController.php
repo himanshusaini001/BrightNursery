@@ -58,13 +58,14 @@ class categoriesController extends Controller
                 'status' => 'required',
             ]);
     
+            
             // sand Validation Error Categories  Page
             if ($validation->fails()) {
                 return redirect()->route('categories')
                     ->withInput()
                     ->withErrors($validation->errors()->all());
             }
-    
+           
             // Uploade img storage Folder
             $filename = ''; // Define filename variable
     

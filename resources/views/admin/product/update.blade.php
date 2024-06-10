@@ -48,9 +48,9 @@
                 </div>
                 <div class="form-group">
                     <label for="img">Image :</label>
-                    <input type="file" class="form-control-file @error('img') is-invalid @enderror" value="{{$product->img}}" name="img" id="img" >
+                    <input type="file" class="form-control-file @error('img') is-invalid @enderror" value="{{$product->img}}" name="img" id="img"  >
                     @if($category->img)
-                     <img src="{{ asset('storage/img/product/' . $product->img) }}" width="50px" height="50px"></td>
+                     <img src="{{ asset('storage/img/product/' . $product->img) }}" width="100px" height="100px" class="mt-3"></td>
                     @endif
                     @error('img')
                         <p class="invalid-feedback">{{ $message }}</p>

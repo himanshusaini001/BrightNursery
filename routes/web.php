@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     // Categories Route
-    Route::prefix('admin/categoy')->group(function () {
+    Route::prefix('admin/category')->group(function () {
         // Categories Route
         Route::get('/Show', [CategoriesController::class, 'categories'])->name('categories');
         Route::post('/Add', [CategoriesController::class, 'store'])->name('addcategories');

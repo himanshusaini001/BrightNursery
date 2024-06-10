@@ -34,7 +34,7 @@ Add Categories.
         <div class="form-group">
             <label for="Status">Status :</label>
             <select class="form-control-file @error('status') is-invalid @enderror" id="status" name="status" onchange="checkValidity()">
-                <option>Select</option>
+                <option value=" ">Select</option>
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
             </select>
