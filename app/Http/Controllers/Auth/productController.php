@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class productController extends Controller
 {
@@ -124,7 +126,7 @@ class productController extends Controller
     {
         try{
             $id = $request->productid;
-
+            $model = categories::findOrFail($id);
             $validation = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string',
@@ -181,6 +183,9 @@ class productController extends Controller
                             'meta'=>$combinedFieldsJson,
                     ]);
                     }else{
+                        if ($model->img) {
+                            Storage::delete('public/img/product/' . $model->img);
+                        }
                         $updateCategory = product::where('id', $id)->update([
                             'cid'=>$request->category,
                             'name'=>$request->name,
