@@ -14,6 +14,8 @@ use App\Http\Controllers\contactController;
 use App\Http\Controllers\singleprotfolioController;
 use App\Http\Controllers\Auth\categoriesController;
 use App\Http\Controllers\Auth\productController;
+use App\Http\Controllers\Auth\StripeController;
+
 
 
 Route::get('/', [homeController::class, 'index'])->name('home');
@@ -80,4 +82,12 @@ Route::middleware('auth')->group(function () {
         
     });
 });
+
+
+
+
+// Stripe Route
+
+Route::get('/checkout', [StripeController::class, 'checkout'])->name('checkout');
+Route::post('/charge', [StripeController::class, 'charge'])->name('charge');
 require __DIR__.'/auth.php';

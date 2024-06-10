@@ -10,6 +10,7 @@
         "laravel/framework": "^11.9",
         "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
+        "stripe/stripe-php": "^13.18",
         "yajra/laravel-datatables-oracle": "^11.1"
     },
     "require-dev": {
