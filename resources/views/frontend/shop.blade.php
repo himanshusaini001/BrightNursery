@@ -1,6 +1,6 @@
     @extends('main')
     @section('content')
- 
+
        
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
@@ -84,7 +84,7 @@
                                     <!-- Single Checkbox -->
                                     <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                         <input type="checkbox" class="custom-control-input" id="customCheckAll">
-                                        <label class="custom-control-label" for="customCheckAll">All plants <span class="text-muted">({{$totalProduct}})</span></label>
+                                        <label class="custom-control-label" for="customCheckAll"><a href="" id="alldatafetch">All plants </a><span class="text-muted">({{$totalProduct}})</span></label>
                                     </div>
                                     @foreach ($category as $categoryid)
                                         @php
@@ -98,7 +98,7 @@
                                         <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck{{$categoryid->id}}">
                                             <label class="custom-control-label" for="customCheck{{$categoryid->id}}">
-                                                <a href="{{route('shopid',$categoryid->id)}}">{{$categoryid->name}}</a>
+                                                <a href="" class="FetchProductWithId" id="{{$categoryid->id}}">{{$categoryid->name}}</a>
                                                 <span class="text-muted">({{$count}})</span>
                                             </label>
                                         </div>
@@ -202,13 +202,13 @@
                 </div>
 
                 <!-- All Products Area -->
-                <div class="col-12 col-md-8 col-lg-9">
+                <div class="col-12 col-md-8 col-lg-9"  >
                     <div class="shop-products-area">
-                        <div class="row">
+                        <div class="row"  id="allproduct">
                             @foreach($product as $allproduct)
                             <!-- Single Product Area -->
-                                <div class="col-12 col-sm-6 col-lg-4">
-                                    <div class="single-product-area mb-50">
+                                <div class="col-12 col-sm-6 col-lg-4" >
+                                    <div class="single-product-area mb-50"  >
                                         <!-- Product Image -->
                                         <div class="product-img">
                                             <a href="shop-details.html"><img src="{{ asset('storage/img/product/' . $allproduct->img) }}" alt=""></a>

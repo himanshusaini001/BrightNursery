@@ -11,15 +11,36 @@ use PHPUnit\TextUI\Configuration\Php;
 class shopController extends Controller
 {
     public function shop($id = null){
- $category = categories::all();
+
+        $category = categories::all();
         
         $categoryId = $category->pluck('id'); 
 
-        $products = Product::whereIn('cid', $categoryId)->get();
+        $products = product::whereIn('cid', $categoryId)->get();
         
         $totalProduct = $products->count();
+
             return view('frontend.shop',['category'=>$category,'product'=>$products,'totalProduct'=>$totalProduct]);
-    }
+        }
 
     
+        public function getproduct($id=null){
+           
+           if($id){
+            $products = product::where('cid', $id)->get();
+            
+            return response()->json([
+                'data' => $products,
+            ]);
+          
+            }else{
+                $AllProduct = product::all();
+
+                return response()->json([
+                    'data' => $AllProduct,
+                ]);
+            }
+            
+            }
+        
 }

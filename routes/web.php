@@ -25,12 +25,17 @@ Route::get('/cart', [cartController::class, 'cart'])->name('cart');
 Route::get('/checkout', [checkoutController::class, 'checkout'])->name('checkout');
 Route::get('/contact', [contactController::class, 'contact'])->name('contact');
 Route::get('/profile', [profileController::class, 'profile'])->name('profile');
-Route::get('/shop', [shopController::class, 'shop'])->name('shop');
-Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
 
-Route::get('/shop/{id}', [shopController::class, 'shop'])->name('shopid');
+
+// All Shop Route Start
+    Route::get('/shop/{id}', [shopController::class, 'shop'])->name('shopid');
+    Route::get('/shop', [shopController::class, 'shop'])->name('shop');
+    Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
+    Route::get('/FetchAllProduct', [shopController::class, 'getproduct']);
+    Route::get('/FetchProductWithId/{id}', [shopController::class, 'getproduct'])->name('FetchProductWithId');
+// All Shop Route End
 
 Route::get('/index', function () {
     return view('welcome');

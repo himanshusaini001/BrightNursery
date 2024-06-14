@@ -11,7 +11,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
-
+    @vite('resources/js/app.js')
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../style.css">
 
