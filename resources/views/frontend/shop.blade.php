@@ -111,18 +111,13 @@
                             <div class="widget-desc">
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                    <label class="custom-control-label" for="customCheck7">New arrivals</label>
-                                </div>
-                                <!-- Single Checkbox -->
-                                <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                    <label class="custom-control-label" for="customCheck8">Alphabetically, A-Z</label>
+                                    <label class="custom-control-label"   for="customCheck8"><a href="" class="FetchProductWithId" value="AtoZ">Alphabetically, A-Z</a></label>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                    <label class="custom-control-label" for="customCheck9">Alphabetically, Z-A</label>
+                                    <label class="custom-control-label" for="customCheck9"><a href="" class="FetchProductWithId" value="ZtoA">Alphabetically, Z-A</a></label>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">

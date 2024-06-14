@@ -34,7 +34,8 @@ Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfol
     Route::get('/shop', [shopController::class, 'shop'])->name('shop');
     Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
     Route::get('/FetchAllProduct', [shopController::class, 'getproduct']);
-    Route::get('/FetchProductWithId/{id}', [shopController::class, 'getproduct'])->name('FetchProductWithId');
+    Route::get('/FetchProductWithId/{value}', [shopController::class, 'getproduct'])->name('FetchProductWithId');
+   
 // All Shop Route End
 
 Route::get('/index', function () {

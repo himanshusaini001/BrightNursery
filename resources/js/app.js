@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', function() {
             Array.from(elements).forEach(function(element) {
                 element.addEventListener('click', function(event) {
                     event.preventDefault();
-                    var categoryId = element.getAttribute('id');
-                    axios.get(`/FetchProductWithId/${categoryId}`)
+                    var value = element.getAttribute('id');
+                    var value = element.getAttribute('value');
+                    
+                    axios.get(`/FetchProductWithId/${value}`)
                         .then(function (response) {
                             // console.log(response);
                             var products = response.data.data;
@@ -94,5 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }
+       
 });
 

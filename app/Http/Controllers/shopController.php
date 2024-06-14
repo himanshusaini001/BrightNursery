@@ -23,24 +23,30 @@ class shopController extends Controller
             return view('frontend.shop',['category'=>$category,'product'=>$products,'totalProduct'=>$totalProduct]);
         }
 
-    
-        public function getproduct($id=null){
-           
-           if($id){
-            $products = product::where('cid', $id)->get();
-            
-            return response()->json([
-                'data' => $products,
-            ]);
-          
-            }else{
+        public function getproduct($value = null) {
+            if (is_numeric($value)) {
+                $products = product::where('cid', $value)->get();
+                return response()->json([
+                    'data' => $products,
+                ]);
+            } elseif ($value == "AtoZ") {
+                $products = product::orderBy('name', 'asc')->get();  // Assuming you want to sort the products alphabetically
+                return response()->json([
+                    'data' => $products,
+                ]);
+            } 
+            elseif ($value == "ZtoA") {
+                $products = product::orderBy('name', 'desc')->get();  // Assuming you want to sort the products alphabetically
+                return response()->json([
+                    'data' => $products,
+                ]);
+            } else {
                 $AllProduct = product::all();
-
                 return response()->json([
                     'data' => $AllProduct,
                 ]);
             }
-            
-            }
+        }
+
         
 }
