@@ -23,30 +23,41 @@ class shopController extends Controller
             return view('frontend.shop',['category'=>$category,'product'=>$products,'totalProduct'=>$totalProduct]);
         }
 
-        public function getproduct($value = null) {
-            if (is_numeric($value)) {
-                $products = product::where('cid', $value)->get();
-                return response()->json([
-                    'data' => $products,
-                ]);
-            } elseif ($value == "AtoZ") {
-                $products = product::orderBy('name', 'asc')->get();  // Assuming you want to sort the products alphabetically
-                return response()->json([
-                    'data' => $products,
-                ]);
-            } 
-            elseif ($value == "ZtoA") {
-                $products = product::orderBy('name', 'desc')->get();  // Assuming you want to sort the products alphabetically
-                return response()->json([
-                    'data' => $products,
-                ]);
-            } else {
-                $AllProduct = product::all();
-                return response()->json([
-                    'data' => $AllProduct,
-                ]);
-            }
+    public function getproduct($value = null) {
+        if (is_numeric($value)) {
+            $products = product::where('cid', $value)->get();
+            return response()->json([
+                'data' => $products,
+            ]);
+        } elseif ($value == "AtoZ") {
+            $products = product::orderBy('name', 'asc')->get();  // Assuming you want to sort the products alphabetically
+            return response()->json([
+                'data' => $products,
+            ]);
+        } 
+        elseif ($value == "ZtoA") {
+            $products = product::orderBy('name', 'desc')->get();  // Assuming you want to sort the products alphabetically
+            return response()->json([
+                'data' => $products,
+            ]);
+        } 
+        elseif ($value == "LowtoHigh") {
+            $products = product::orderBy('price', 'asc')->get();  // Assuming you want to sort the products alphabetically
+            return response()->json([
+                'data' => $products,
+            ]);
         }
+        elseif ($value == "HighttoLow") {
+            $products = product::orderBy('price', 'desc')->get();  // Assuming you want to sort the products alphabetically
+            return response()->json([
+                'data' => $products,
+            ]);
+        }else {
+            $AllProduct = product::all();
+            return response()->json([
+                'data' => $AllProduct,
+            ]);
+        }
+    }
 
-        
 }

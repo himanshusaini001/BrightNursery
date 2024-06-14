@@ -98,7 +98,7 @@
                                         <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck{{$categoryid->id}}">
                                             <label class="custom-control-label" for="customCheck{{$categoryid->id}}">
-                                                <a href="" class="FetchProductWithId" id="{{$categoryid->id}}">{{$categoryid->name}}</a>
+                                                <a href="" class="FetchProductWithValue" value="{{$categoryid->id}}">{{$categoryid->name}}</a>
                                                 <span class="text-muted">({{$count}})</span>
                                             </label>
                                         </div>
@@ -112,22 +112,22 @@
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                    <label class="custom-control-label"   for="customCheck8"><a href="" class="FetchProductWithId" value="AtoZ">Alphabetically, A-Z</a></label>
+                                    <label class="custom-control-label"   for="customCheck8"><a href="" class="FetchProductWithValue" value="AtoZ">Alphabetically, A-Z</a></label>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                    <label class="custom-control-label" for="customCheck9"><a href="" class="FetchProductWithId" value="ZtoA">Alphabetically, Z-A</a></label>
+                                    <label class="custom-control-label" for="customCheck9"><a href="" class="FetchProductWithValue" value="ZtoA">Alphabetically, Z-A</a></label>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck10">
-                                    <label class="custom-control-label" for="customCheck10">Price: low to high</label>
+                                    <label class="custom-control-label" for="customCheck10"><a href="" class="FetchProductWithValue" value="LowtoHigh">Price: Low to High</a></label>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center">
                                     <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                    <label class="custom-control-label" for="customCheck11">Price: high to low</label>
+                                    <label class="custom-control-label" for="customCheck11"><a href="" class="FetchProductWithValue" value="HighttoLow">Price: Hight to Low</a></label>
                                 </div>
                             </div>
                         </div>
@@ -219,8 +219,9 @@
                                         </div>
                                         <!-- Product Info -->
                                         <div class="product-info mt-15 text-center">
-                                            <a href="shop-details.html">
-                                                <p>{{$allproduct->name}}</p>
+                                            <a href="{{ route('shopDetail', $allproduct->id) }}">
+                                                <!-- Display the product name -->
+                                                <p>{{ $allproduct->name }}</p>
                                             </a>
                                             <h6>{{$allproduct->price}}</h6>
                                         </div>

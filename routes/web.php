@@ -32,7 +32,7 @@ Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfol
 // All Shop Route Start
     Route::get('/shop/{id}', [shopController::class, 'shop'])->name('shopid');
     Route::get('/shop', [shopController::class, 'shop'])->name('shop');
-    Route::get('/shopDetail', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
+    Route::get('/shopDetail/{id}', [shopDetailsController::class, 'shopDetail'])->name('shopDetail');
     Route::get('/FetchAllProduct', [shopController::class, 'getproduct']);
     Route::get('/FetchProductWithId/{value}', [shopController::class, 'getproduct'])->name('FetchProductWithId');
    

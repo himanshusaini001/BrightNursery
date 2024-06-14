@@ -43,7 +43,7 @@ function displaydata(products){
                         </div>
                         <!-- Product Info -->
                         <div class="product-info mt-15 text-center">
-                            <a href="shop-details.html">
+                            <a href="/shopDetail/${products[i].id}">
                                 <p>${products[i].name}</p>
                             </a>
                             <h6>${products[i].price}</h6>
@@ -75,15 +75,15 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Element with ID "alldatafetch" does not exist.');
     }
 
-    if(elementExistsByClass('FetchProductWithId'))
+    if(elementExistsByClass('FetchProductWithValue'))
         {
-            var elements = document.getElementsByClassName('FetchProductWithId');
+            var elements = document.getElementsByClassName('FetchProductWithValue');
             Array.from(elements).forEach(function(element) {
                 element.addEventListener('click', function(event) {
                     event.preventDefault();
-                    var value = element.getAttribute('id');
+                   
                     var value = element.getAttribute('value');
-                    
+              
                     axios.get(`/FetchProductWithId/${value}`)
                         .then(function (response) {
                             // console.log(response);
