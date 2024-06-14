@@ -10,8 +10,8 @@ class shopDetailsController extends Controller
     public function shopDetail($id){
 
         $product = product::where('id',$id)->get();
-        echo $product;die;
-        return view('frontend.shop-details');
+        
+        return view('frontend.shop-details',['data' =>$product]);
     }
 
 

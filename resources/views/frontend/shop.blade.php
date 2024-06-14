@@ -219,7 +219,7 @@
                                         </div>
                                         <!-- Product Info -->
                                         <div class="product-info mt-15 text-center">
-                                            <a href="{{ route('shopDetail', $allproduct->id) }}">
+                                           <a href="{{ route('shopDetail', $allproduct->id) }}">
                                                 <!-- Display the product name -->
                                                 <p>{{ $allproduct->name }}</p>
                                             </a>

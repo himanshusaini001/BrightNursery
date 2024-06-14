@@ -1,5 +1,6 @@
     @extends('main')
     @section('content')
+
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
@@ -13,7 +14,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('shop')}}">Shop</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Shop Details</li>
                         </ol>
                     </nav>
@@ -34,18 +35,18 @@
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
+                                        <a class="product-img" href="{{ asset('storage/img/product/' . $data[0]->img) }}" title="Product Image">
+                                        <img class="d-block w-100" src="{{ asset('storage/img/product/' . $data[0]->img) }}" alt="1">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
+                                        <a class="product-img" href="{{ asset('storage/img/product/' . $data[0]->img) }}" title="Product Image">
+                                        <img class="d-block w-100" src="{{ asset('storage/img/product/' . $data[0]->img) }}" alt="1">
                                     </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="product-img" href="img/bg-img/49.jpg" title="Product Image">
-                                        <img class="d-block w-100" src="img/bg-img/49.jpg" alt="1">
+                                        <a class="product-img" href="{{ asset('storage/img/product/' . $data[0]->img) }}" title="Product Image">
+                                        <img class="d-block w-100" src="{{ asset('storage/img/product/' . $data[0]->img) }}" alt="1">
                                     </a>
                                     </div>
                                 </div>
@@ -63,8 +64,8 @@
 
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
-                            <h4 class="title">Recuerdos Plant</h4>
-                            <h4 class="price">$9.99</h4>
+                            <h4 class="title">{{$data[0]->name}}</h4>
+                            <h4 class="price">{{$data[0]->price}}</h4>
                             <div class="short_overview">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellem malesuada in nibh selama euismod. Curabitur a rhoncus dui. Nunc lobortis cursus magna utrum faucibus. Vivamus justo nibh, pharetra non risus accumsan, tincidunt suscipit leo.</p>
                             </div>
