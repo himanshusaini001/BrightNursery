@@ -23,11 +23,15 @@ Route::get('/about', [aboutController::class, 'about'])->name('about');
 Route::get('/blog', [blogController::class, 'blog'])->name('blog');
 Route::get('/cart', [cartController::class, 'cart'])->name('cart');
 Route::get('/checkout', [checkoutController::class, 'checkout'])->name('checkout');
-Route::get('/contact', [contactController::class, 'contact'])->name('contact');
 Route::get('/profile', [profileController::class, 'profile'])->name('profile');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
 
+
+// All Contact Route Start
+    Route::get('/contact', [contactController::class, 'contact'])->name('contact');
+    Route::post('/contactStore', [contactController::class, 'contactStore'])->name('contactStore');
+// All Contact Route End
 
 // All Shop Route Start
     Route::get('/shop/{id}', [shopController::class, 'shop'])->name('shopid');

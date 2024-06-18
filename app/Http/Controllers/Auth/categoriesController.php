@@ -65,7 +65,7 @@ class categoriesController extends Controller
             if ($validation->fails()) {
                 return redirect()->route('categories')
                     ->withInput()
-                    ->withErrors($validation->errors()->all());
+                    ->withErrors($validation);
             }
            
             // Uploade img storage Folder

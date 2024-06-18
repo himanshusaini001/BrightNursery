@@ -65,26 +65,55 @@
                     </div>
                     <!-- Contact Form Area -->
                     <div class="contact-form-area mb-100">
-                        <form action="#" method="post">
+                        @if (session('success'))
+                            <div class="alert alert-success" id="success-alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        <script>
+                            // Check if the alert exists
+                            var successAlert = document.getElementById('success-alert');
+                            if (successAlert) {
+                                // Set a timeout to remove the alert after 5 seconds
+                                setTimeout(function() {
+                                    successAlert.remove();
+                                }, 5000); // 5000 milliseconds = 5 seconds
+                            }
+                        </script>
+                        <form action="{{route('contactStore')}}" method="post">
+                           @csrf
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="contact-name" placeholder="Your Name">
+                                        <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name" id="name" placeholder="Your Name">
+                                        @error('name')
+                                         <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" id="contact-email" placeholder="Your Email">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="Your Email">
+                                        @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                       @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="contact-subject" placeholder="Subject">
+                                        <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" id="subject" placeholder="Subject">
+                                        @error('subject')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                       @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                        <textarea class="form-control @error('message') is-invalid @enderror" name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
+                                        @error('message')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                       @enderror
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -106,3 +135,5 @@
     </section>
     <!-- ##### Contact Area End ##### -->
     @endsection
+
+    
