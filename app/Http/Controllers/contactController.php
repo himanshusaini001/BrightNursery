@@ -21,13 +21,12 @@ class contactController extends Controller
            
             $validation = Validator::make( $request->all(),[
                 'name' => 'required|string',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:contacts,email',
                 'subject' => 'required|string',
                 'message' => 'required|string',
             ]);
 
             if($validation->fails()){
-                dd($request);
                 return redirect()->route('contact')
                     ->withInput()
                     ->withErrors($validation);

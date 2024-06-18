@@ -78,7 +78,7 @@
                                 // Set a timeout to remove the alert after 5 seconds
                                 setTimeout(function() {
                                     successAlert.remove();
-                                }, 5000); // 5000 milliseconds = 5 seconds
+                                }, 10000); // 5000 milliseconds = 5 seconds
                             }
                         </script>
                         <form action="{{route('contactStore')}}" method="post">
