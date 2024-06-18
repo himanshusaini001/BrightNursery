@@ -1,7 +1,18 @@
     @extends('main')
     @section('content')
-
-       
+{{-- 
+    @php
+    if (isset($category_with_product)) {
+        echo "<pre>";
+        foreach ($category_with_product as $product) {
+            foreach ($product['products'] as $prod) {
+                echo "CID: " . $prod->cid . "\n";
+            }
+        }
+        echo "</pre>";
+    }
+    die;
+@endphp --}}
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
@@ -87,19 +98,26 @@
                                         <label class="custom-control-label" for="customCheckAll"><a href="" id="alldatafetch">All plants </a><span class="text-muted">({{$totalProduct}})</span></label>
                                     </div>
                                     @foreach ($category as $categoryid)
-                                        @php
-                                            $count = 0;
-                                            foreach($product as $productid) {
-                                                if($categoryid->id == $productid->cid) {
-                                                    $count++;
-                                                }
-                                            }
-                                        @endphp
+                                        
                                         <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
                                             <input type="checkbox" class="custom-control-input" id="customCheck{{$categoryid->id}}">
                                             <label class="custom-control-label" for="customCheck{{$categoryid->id}}">
                                                 <a href="" class="FetchProductWithValue" value="{{$categoryid->id}}">{{$categoryid->name}}</a>
-                                                <span class="text-muted">({{$count}})</span>
+                                                @php
+                                                $printed = false; // Flag to track if we have printed the count
+                                                
+                                                foreach ($category_with_product as $countproduct) {
+                                                    foreach ($countproduct['products'] as $countids) {
+                                                        if ($categoryid->id == $countids->cid && !$printed) {
+                                                            echo "<span class='text-muted'>(" . $countproduct['product_count'] . ")</span>";
+                                                            $printed = true; // Set flag to true once printed
+                                                            break; // Exit inner loop since we printed the count
+                                                        }
+                                                    }
+                                                }
+                                            @endphp
+                                               
+                                                
                                             </label>
                                         </div>
                                     @endforeach
@@ -228,14 +246,12 @@
                                     </div>
                                 </div>
                             @endforeach
-                        <!-- Pagination -->
-                        {{-- <nav aria-label="Page navigation">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav> --}}
+                    </div>
+                     <!-- Pagination -->
+                     <div class="d-flex justify-content-center custom-pagination" id="paginationLinks">
+                        @if(isset($product))
+                        {!! $product->links() !!}
+                        @endif
                     </div>
                 </div>
             </div>

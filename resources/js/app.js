@@ -19,7 +19,8 @@ function elementExistsByClass(className) {
     return document.querySelectorAll(`.${className}`).length > 0;
 }
 
-function displaydata(products){
+function displaydata(products,paginationLinks){
+
     var productContainer = document.getElementById('allproduct');
         productContainer.innerHTML = '';
 
@@ -53,6 +54,32 @@ function displaydata(products){
             `;
             productContainer.innerHTML += productHtml;
         }
+        var paginationContainer = document.getElementById('paginationLinks');
+        paginationContainer.innerHTML = paginationLinks;
+       
+        var paginationLinks = paginationContainer.querySelectorAll('a.page-link');
+        Array.from(paginationLinks).forEach(function (link)
+        {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    fetchProducts(link.href);
+                });
+            });
+}
+
+function fetchProducts(url) {
+    axios.get(url)
+        .then(function (response) {
+            
+            console.log('Response data:', response.data.data.data);
+           var products = response.data.data.data;
+             var paginationHtml = response.data.paginationLinks;
+            console.log(response.data.paginationLinks);
+             displaydata(products, paginationHtml);
+        })
+        .catch(function (error) {
+            console.error('Error fetching data:', error);
+        });
 }
 
 
@@ -88,7 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         .then(function (response) {
                             // console.log(response);
                             var products = response.data.data;
-                            displaydata(products);
+                            var paginationLinks = response.data.paginationLinks;
+                            displaydata(products,paginationLinks);
                         })
                         .catch(function (error) {
                             console.log('Error fetching data:', error);
