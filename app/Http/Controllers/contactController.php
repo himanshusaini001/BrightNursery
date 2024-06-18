@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class contactController extends Controller
 {
-    public function checkout(){
+    public function contact(){
         return view('frontend.contact');
     }
 }
