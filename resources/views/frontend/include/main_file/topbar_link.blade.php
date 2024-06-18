@@ -14,5 +14,6 @@
     @vite('resources/js/app.js')
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../front.css">
 
 </head>

@@ -91,7 +91,6 @@ class shopController extends Controller
             $AllProduct = product::all();
             return response()->json([
                 'data' => $AllProduct,
-                'paginationLinks' => $AllProduct->links()->toHtml(),
             ]);
         }
     }

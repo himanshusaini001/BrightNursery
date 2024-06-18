@@ -16,8 +16,7 @@
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
-        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(../
-        img/bg-img/24.jpg);">
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
             <h2>Shop</h2>
         </div>
 
@@ -42,27 +41,10 @@
             <div class="row">
                 <!-- Shop Sorting Data -->
                 <div class="col-12">
-                    <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-between">
+                    <div class="shop-sorting-data d-flex flex-wrap align-items-center justify-content-center">
                         <!-- Shop Page Count -->
-                        <div class="shop-page-count">
-                            <p>Showing 1–9 of {{$totalProduct}} results</p>
-                        </div>
-                        <!-- Search by Terms -->
-                        <div class="search_by_terms">
-                            <form action="#" method="post" class="form-inline">
-                                <select class="custom-select widget-title">
-                                  <option selected>Short by Popularity</option>
-                                  <option value="1">Short by Newest</option>
-                                  <option value="2">Short by Sales</option>
-                                  <option value="3">Short by Ratings</option>
-                                </select>
-                                <select class="custom-select widget-title">
-                                  <option selected>Show: 9</option>
-                                  <option value="1">12</option>
-                                  <option value="2">18</option>
-                                  <option value="3">24</option>
-                                </select>
-                            </form>
+                        <div class="shop-page-count ">
+                            <h2><b>All Type Plants</b></h2>
                         </div>
                     </div>
                 </div>
@@ -74,7 +56,7 @@
                     <div class="shop-sidebar-area">
 
                         <!-- Shop Widget -->
-                        <div class="shop-widget price mb-50">
+                        {{-- <div class="shop-widget price mb-50">
                             <h4 class="widget-title">Prices</h4>
                             <div class="widget-desc">
                                 <div class="slider-range">
@@ -86,7 +68,7 @@
                                     <div class="range-price">Price: $8 - $30</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <!-- Shop Widget -->
                             <div class="shop-widget catagory mb-50">
@@ -94,14 +76,12 @@
                                 <div class="widget-desc">
                                     <!-- Single Checkbox -->
                                     <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckAll">
-                                        <label class="custom-control-label" for="customCheckAll"><a href="" id="alldatafetch">All plants </a><span class="text-muted">({{$totalProduct}})</span></label>
+                                        
+                                       <a href="" id="alldatafetch">All plants </a><span class="text-muted">({{$totalProduct}})</span>
                                     </div>
                                     @foreach ($category as $categoryid)
                                         
                                         <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck{{$categoryid->id}}">
-                                            <label class="custom-control-label" for="customCheck{{$categoryid->id}}">
                                                 <a href="" class="FetchProductWithValue" value="{{$categoryid->id}}">{{$categoryid->name}}</a>
                                                 @php
                                                 $printed = false; // Flag to track if we have printed the count
@@ -109,6 +89,7 @@
                                                 foreach ($category_with_product as $countproduct) {
                                                     foreach ($countproduct['products'] as $countids) {
                                                         if ($categoryid->id == $countids->cid && !$printed) {
+                                                            
                                                             echo "<span class='text-muted'>(" . $countproduct['product_count'] . ")</span>";
                                                             $printed = true; // Set flag to true once printed
                                                             break; // Exit inner loop since we printed the count
@@ -129,23 +110,19 @@
                             <div class="widget-desc">
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck8">
-                                    <label class="custom-control-label"   for="customCheck8"><a href="" class="FetchProductWithValue" value="AtoZ">Alphabetically, A-Z</a></label>
+                                    <a href="" class="FetchProductWithValue" value="AtoZ">Alphabetically, A-Z</a>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck9">
-                                    <label class="custom-control-label" for="customCheck9"><a href="" class="FetchProductWithValue" value="ZtoA">Alphabetically, Z-A</a></label>
+                                  <a href="" class="FetchProductWithValue" value="ZtoA">Alphabetically, Z-A</a>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck10">
-                                    <label class="custom-control-label" for="customCheck10"><a href="" class="FetchProductWithValue" value="LowtoHigh">Price: Low to High</a></label>
+                                   <a href="" class="FetchProductWithValue" value="LowtoHigh">Price: Low to High</a>
                                 </div>
                                 <!-- Single Checkbox -->
                                 <div class="custom-control custom-checkbox d-flex align-items-center">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                    <label class="custom-control-label" for="customCheck11"><a href="" class="FetchProductWithValue" value="HighttoLow">Price: Hight to Low</a></label>
+                                    <a href="" class="FetchProductWithValue" value="HighttoLow">Price: Hight to Low</a>
                                 </div>
                             </div>
                         </div>

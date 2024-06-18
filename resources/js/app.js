@@ -20,7 +20,6 @@ function elementExistsByClass(className) {
 }
 
 function displaydata(products,paginationLinks){
-
     var productContainer = document.getElementById('allproduct');
         productContainer.innerHTML = '';
 
@@ -91,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(function (response) {
                     // Handle successful response
                     var products = response.data.data;
+                    //console.log(products);
                     displaydata(products);
                 })
                 .catch(function (error) {
@@ -114,8 +114,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     axios.get(`/FetchProductWithId/${value}`)
                         .then(function (response) {
                             // console.log(response);
-                            var products = response.data.data;
+                            var products = response.data.data.data;
                             var paginationLinks = response.data.paginationLinks;
+                            console.log(products);
                             displaydata(products,paginationLinks);
                         })
                         .catch(function (error) {
