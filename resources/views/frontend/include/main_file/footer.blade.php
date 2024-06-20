@@ -12,11 +12,11 @@
                             </div>
                             <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
                             <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="https://www.facebook.com/login/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="https://x.com/i/flow/login"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/accounts/login/?hl=en"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.linkedin.com/login"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>

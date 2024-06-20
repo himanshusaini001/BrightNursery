@@ -12,7 +12,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}"><i class="fa fa-home"></i> Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Contact</li>
                         </ol>
                     </nav>
@@ -23,7 +23,7 @@
     <!-- ##### Breadcrumb Area End ##### -->
 
     <!-- ##### Contact Area Info Start ##### -->
-    <div class="contact-area-info section-padding-0-100">
+    {{-- <div class="contact-area-info section-padding-0-100">
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <!-- Contact Thumbnail -->
@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ##### Contact Area Info End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
@@ -78,7 +78,7 @@
                                 // Set a timeout to remove the alert after 5 seconds
                                 setTimeout(function() {
                                     successAlert.remove();
-                                }, 10000); // 5000 milliseconds = 5 seconds
+                                }, 10000); // 10000 milliseconds = 10 seconds
                             }
                         </script>
                         <form action="{{route('contactStore')}}" method="post">
