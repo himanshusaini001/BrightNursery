@@ -1,14 +1,11 @@
     @extends('main')
     @section('content')
-
-       
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
         <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(img/bg-img/24.jpg);">
             <h2>SHOP DETAILS</h2>
         </div>
-
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -30,7 +27,6 @@
         <div class="produts-details--content mb-50">
             <div class="container">
                 <div class="row justify-content-between">
-
                     <div class="col-12 col-md-6 col-lg-5">
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
@@ -62,7 +58,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-6">
                         <div class="single_product_desc">
                             <h4 class="title">{{$data[0]->name}}</h4>
@@ -70,7 +65,6 @@
                             <div class="short_overview">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pellem malesuada in nibh selama euismod. Curabitur a rhoncus dui. Nunc lobortis cursus magna utrum faucibus. Vivamus justo nibh, pharetra non risus accumsan, tincidunt suscipit leo.</p>
                             </div>
-
                             <div class="cart--area d-flex flex-wrap align-items-center">
                                 <!-- Add to Cart Form -->
                                 <form id="AddTocart" class="cart clearfix d-flex align-items-center" method="post">
@@ -91,7 +85,6 @@
                                     <a href="#" class="compare-btn ml-15"><i class="arrow_left-right_alt"></i></a>
                                 </div>
                             </div>
-
                             <div class="products--meta">
                                 <p><span>SKU:</span> <span>CT201807</span></p>
                                 <p><span>Category:</span> <span>Outdoor Plants</span></p>
@@ -99,20 +92,18 @@
                                 <p>
                                     <span>Share on:</span>
                                     <span>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                </span>
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                    </span>
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -195,7 +186,6 @@
                                         </li>
                                     </ul>
                                 </div>
-
                                 <div class="submit_a_review_area mt-50">
                                     <h4>Submit A Review</h4>
                                     <form action="#" method="post">
@@ -249,7 +239,6 @@
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -269,9 +258,7 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-
                 <!-- Single Product Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-product-area mb-100">
@@ -297,7 +284,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Single Product Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-product-area mb-100">
@@ -319,7 +305,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Single Product Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-product-area mb-100">
@@ -341,7 +326,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Single Product Area -->
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-product-area mb-100">
@@ -367,7 +351,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
