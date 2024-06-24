@@ -1,5 +1,8 @@
 @extends('main')
 @section('content')
+@php 
+    print_r($cart);die;
+@endphp
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->

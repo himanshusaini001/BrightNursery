@@ -14,5 +14,7 @@ class shopDetailsController extends Controller
         return view('frontend.shop-details',['data' =>$product]);
     }
 
-
-}
+    public function addQuantity(){
+        echo "ok";
+    }
+}   

@@ -81,6 +81,36 @@ function fetchProducts(url) {
         });
 }
 
+function sub(value,stock) {
+    var effect = document.getElementById('qty');
+    var qty = parseInt(effect.value);
+    
+   
+    if (!isNaN(qty)) {
+        qty -= Math.abs(value);
+        if (qty >= 1 && qty <= stock) {
+            effect.value = qty;
+            if(effect.value < stock ){
+                document.getElementById('AvailabeleStock').innerHTML='';
+            }
+        }
+    }
+}
+
+
+function add(value,stock) {
+    var effect = document.getElementById('qty');
+    var qty = parseInt(effect.value);
+    if (!isNaN(qty)) {
+        qty += value;
+        if (qty >= 1 && qty <= stock) {
+            effect.value = qty;
+            if(effect.value == stock ){
+                alert('Only Available Stock ' + stock);
+            }
+        }
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('alldatafetch')) {
@@ -125,6 +155,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }
+        if(elementExistsByClass('sub')) {
+            var elements = document.getElementsByClassName('sub');
+            Array.from(elements).forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var value = parseInt(element.getAttribute('value'));
+                    var stock = parseInt(document.getElementById('stock').getAttribute('value')); // Stock 
+                    var id = parseInt(document.getElementById('id').getAttribute('value')); // id 
+                    sub(value,stock,id);
+                   
+                });
+            });
+        }
+
+        if(elementExistsByClass('add')) {
+            var elements = document.getElementsByClassName('add');
+            Array.from(elements).forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var value = parseInt(element.getAttribute('value'));
+                    var stock = parseInt(document.getElementById('stock').getAttribute('value')); // Stock 
+                    var id = parseInt(document.getElementById('id').getAttribute('value')); // id 
+                    add(value,stock,id);
+                });
+            });
+        }
+       
+        if(elementExistsById('AddTocart')) {
+         this.getElementById('AddTocart').addEventListener('submit',function(event){
+            event.preventDefault();
+               
+                const qty = document.getElementById('qty').value;
+                const id = document.getElementById('id').value;
+                axios.post('/addtocart', {
+                    qty: qty,
+                    id: id
+                })
+                .then(function (response) {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+         })
+           
+        }
+       
+           
        
 });
+
 

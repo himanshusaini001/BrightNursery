@@ -1,6 +1,7 @@
     @extends('main')
     @section('content')
 
+       
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
@@ -72,13 +73,17 @@
 
                             <div class="cart--area d-flex flex-wrap align-items-center">
                                 <!-- Add to Cart Form -->
-                                <form class="cart clearfix d-flex align-items-center" method="post">
+                                <form id="AddTocart" class="cart clearfix d-flex align-items-center" method="post">
+                                    @csrf
                                     <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <span class="qty-minus sub" value="-1"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="qty" value="1">
+                                           <input type="hidden" class="qty-text" id="stock" name="stock" value="{{$data[0]->stock}}">
+                                           <span id="AvailabeleStock"></span>
+                                        <span class="qty-plus add" value="1"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <input type="hidden" class="qty-text" id="id" name="id" value="{{$data[0]->id}}">
                                     </div>
-                                    <button type="submit" name="addtocart" value="5" class="btn alazea-btn ml-15">Add to cart</button>
+                                    <button type="submit" name="addtocart"  class="btn alazea-btn ml-15">Add to cart</button>
                                 </form>
                                 <!-- Wishlist & Compare -->
                                 <div class="wishlist-compare d-flex flex-wrap align-items-center">
@@ -367,4 +372,5 @@
         </div>
     </div>
     <!-- ##### Related Product Area End ##### -->
+
     @endsection

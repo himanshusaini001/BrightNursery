@@ -25,6 +25,8 @@ Route::get('/cart', [cartController::class, 'cart'])->name('cart');
 Route::get('/checkout', [checkoutController::class, 'checkout'])->name('checkout');
 Route::get('/profile', [profileController::class, 'profile'])->name('profile');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
+
+Route::post('/addtocart', [cartController::class, 'addtocart'])->name('addtocart');
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
 
 
