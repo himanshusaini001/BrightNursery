@@ -14,8 +14,23 @@ class CartController extends Controller
 {
     public function cart()
     {
+        if (Auth::check()) {
+            // If user is authenticated, get user ID
+            $user_id = Auth::id();
+            $cart_data = cart::where('user_id',$user_id)->get();
+           
+          
+        } else {
+            // If user is not authenticated, get session ID
+            $session_id  = Session::getId();
+            $cart_data = cart::where('session_id',$session_id)->get();
+        } 
+       
         $cart = session()->get('cart', []);
-        return view('frontend.cart', ['cart' => $cart]);
+        return view('frontend.cart', [
+            'cart' => $cart,
+            'cart_data' => $cart_data,  // Corrected the array syntax here
+        ]);
     }
 
     public function addToCart(Request $request)

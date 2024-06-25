@@ -1,8 +1,6 @@
 @extends('main')
 @section('content')
-@php 
-    print_r($cart);die;
-@endphp
+    
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="breadcrumb-area">
         <!-- Top Breadcrumb Area -->
@@ -42,22 +40,32 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $total=0;
+                            @endphp
+                                @foreach ($cart_data as $data)
+                                    
+                                @php
+                                    $total += $data->price;
+                                @endphp
+                               
                                 <tr>
                                     <td class="cart_product_img">
                                         <a href="#"><img src="img/bg-img/34.jpg" alt="Product"></a>
-                                        <h5>Recuerdos Plant</h5>
+                                        <h5>{{$data->product_name}}</h5>
                                     </td>
                                     <td class="qty">
                                         <div class="quantity">
-                                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="1">
-                                            <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <span class="qty-minus" ><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="{{$data->product_quantity}}">
+                                            <span class="qty-plus" ><i class="fa fa-plus" aria-hidden="true"></i></span>
                                         </div>
                                     </td>
-                                    <td class="price"><span>$9.99</span></td>
-                                    <td class="total_price"><span>$9.99</span></td>
+                                    <td class="price"><span>{{$data->price}}</span></td>
+                                    <td class="total_price"><span>{{$data->price}}</span></td>
                                     <td class="action"><a href="#"><i class="icon_close"></i></a></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -84,7 +92,7 @@
                         <h5 class="title--">Cart Total</h5>
                         <div class="subtotal d-flex justify-content-between">
                             <h5>Subtotal</h5>
-                            <h5>$9.99</h5>
+                            <h5>{{$total}}</h5>
                         </div>
                         <div class="shipping d-flex justify-content-between">
                             <h5>Shipping</h5>
@@ -105,7 +113,7 @@
                         </div>
                         <div class="total d-flex justify-content-between">
                             <h5>Total</h5>
-                            <h5>$9.99</h5>
+                            <h5>{{$total}}</h5>
                         </div>
                         <div class="checkout-btn">
                             <a href="#" class="btn alazea-btn w-100">PROCEED TO CHECKOUT</a>

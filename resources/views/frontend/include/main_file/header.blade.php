@@ -1,3 +1,18 @@
+@php
+    use App\Models\Cart;
+    if (Auth::check()) {
+            // If user is authenticated, get user ID
+            $user_id = Auth::id();
+            $carts = cart::where('user_id',$user_id)->get();
+          
+        } else {
+            // If user is not authenticated, get session ID
+            $session_id  = Session::getId();
+            $cart_data = cart::where('session_id',$session_id)->get();
+           
+        } 
+        $total_carts = $carts->count();
+@endphp
  <header class="header-area">
 
         <!-- ***** Top Header Area ***** -->
@@ -34,7 +49,7 @@
                                 </div>
                                 <!-- Cart -->
                                 <div class="cart">
-                                    <a href="{{route('cart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">(1)</span></span></a>
+                                    <a href="{{route('cart')}}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Cart <span class="cart-quantity">({{$total_carts}})</span></span></a>
                                 </div>
                             </div>
                         </div>
