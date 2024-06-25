@@ -34,12 +34,13 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $tampid = mt_rand(10, 99); // Adjust the range as needed
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'usertype' => $request->is_admin ?? false,
             'password' => Hash::make($request->password),
+            'tampid' => $tampid,
             
         ]);
 

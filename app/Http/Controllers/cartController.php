@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product;
+use App\Models\cart;
 
 class cartController extends Controller
 {
@@ -26,36 +27,14 @@ class cartController extends Controller
 
         // Fetch the product by ID
         $product = product::find($id);
-
-        if ($product) {
-            // Retrieve cart from session or create a new one if it doesn't exist
-            $cart = session()->get('cart', []);
-
-            // Check if the product is already in the cart
-            if (isset($cart[$id])) {
-                // If it is, just update the quantity
-                $cart[$id]['qty'] += $qty;
-            } else {
-                // If not, add the product to the cart
-                $cart[$id] = [
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'stock' => $product->stock,
-                    'qty' => $qty,
-                    'price' => $product->price
-                ];
-                
-            }
-
-            // Save the cart back to the session
-            session()->put('cart', $cart);
-
-            // Return a success response
-            return response()->json(['success' => 'Product added to cart'], 200);
+        print_r($product);exit;
+        if($product){
+            $addcart = cart::create([
+                'cid' => $product->cid,
+                'name' => $product->name,
+                ''
+            ]);
         }
-
-        // Return an error response if product not found
-        return response()->json(['error' => 'Product not found'], 404);
     }
     
     
