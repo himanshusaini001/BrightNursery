@@ -69,7 +69,7 @@ class CartController extends Controller
                 'stock' => $product->stock,
             ]);
             if ($addcart) {
-                return response()->json(['message' => 'Product added to cart'], 200);
+                 return redirect()->route('cart')->with('message', 'Cart item deleted successfully');
             } else {
                 return response()->json(['error' => 'Failed to add product to cart'], 500);
             }
@@ -78,25 +78,21 @@ class CartController extends Controller
         }
     }
 
-    // public function removeFromCart(Request $request)
-    // {
-    //     $id = $request->id;
-        
-    //     // Retrieve cart from session
-    //     $cart = session()->get('cart', []);
-        
-    //     // Check if the product exists in the cart
-    //     if (isset($cart[$id])) {
-    //         unset($cart[$id]);
-            
-    //         // Save the updated cart back to the session
-    //         session()->put('cart', $cart);
-            
-    //         // Return a success response
-    //         return response()->json(['success' => 'Product removed from cart'], 200);
-    //     }
-        
-    //     // Return an error response if product not found in cart
-    //     return response()->json(['error' => 'Product not found in cart'], 404);
-    // }
+    public function deleteCart($id)
+    {
+       
+        $cartItem  = cart::find($id);
+        // Check if the cart item exists
+        if ($cartItem) {
+            // Delete the cart item
+            $cartItem->delete();
+    
+            // Redirect to the cart route with a success message
+            return redirect()->route('cart')->with('message', 'Cart item deleted successfully');
+        } else {
+            // If the cart item does not exist, you might want to handle this case
+            return response()->json(['message' => 'Cart item not found'], 404);
+        }
+       
+    }
 }

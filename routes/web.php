@@ -27,6 +27,8 @@ Route::get('/profile', [profileController::class, 'profile'])->name('profile');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 
 Route::post('/addtocart', [cartController::class, 'addtocart'])->name('addtocart');
+Route::get('/deleteCart/{id}', [cartController::class, 'deleteCart'])->name('deleteCart');
+
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');
 
 

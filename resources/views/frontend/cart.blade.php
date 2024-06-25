@@ -63,7 +63,7 @@
                                     </td>
                                     <td class="price"><span>{{$data->price}}</span></td>
                                     <td class="total_price"><span>{{$data->price}}</span></td>
-                                    <td class="action"><a href="#"><i class="icon_close"></i></a></td>
+                                    <td class="action"><a href="{{route('deleteCart',$data->id)}}"><i class="icon_close"></i></a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
