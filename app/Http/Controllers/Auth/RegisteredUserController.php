@@ -35,6 +35,9 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         $tampid = mt_rand(10, 99); // Adjust the range as needed
+
+        session()->put('tampid',$tampid);
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

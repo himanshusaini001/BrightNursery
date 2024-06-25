@@ -9,7 +9,6 @@ use Illuminate\Notifications\Notifiable;
 class cart extends Model
 {
     use HasFactory, Notifiable;
-    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,8 +17,10 @@ class cart extends Model
      */
     protected $fillable = [
         'id',
+        'tampid',
         'user_id',
         'product_id',
+        'session_id',
         'product_name',
         'product_quantity',
         'price',
