@@ -27,6 +27,9 @@ Route::get('/profile', [profileController::class, 'profile'])->name('profile');
 Route::get('/singlePost', [singlePostController::class, 'singlePost'])->name('singlePost');
 
 Route::post('/addtocart', [cartController::class, 'addtocart'])->name('addtocart');
+Route::post('/add_cart_with_total', [cartController::class, 'add_cart_with_total'])->name('add_cart_with_total');
+
+Route::post('/sub_cart_with_total', [cartController::class, 'sub_cart_with_total'])->name('sub_cart_with_total');
 Route::get('/deleteCart/{id}', [cartController::class, 'deleteCart'])->name('deleteCart');
 
 Route::get('/singleportfolio', [singleprotfolioController::class, 'singleportfolio'])->name('singleportfolio');

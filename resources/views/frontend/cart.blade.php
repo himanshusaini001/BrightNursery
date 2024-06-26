@@ -56,13 +56,14 @@
                                     </td>
                                     <td class="qty">
                                         <div class="quantity">
-                                            <span class="qty-minus" ><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="99" name="quantity" value="{{$data->product_quantity}}">
-                                            <span class="qty-plus" ><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <span class="qty-minus sub_cart"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                            <input type="number" class="qty-text" id="{{$data->id}}" step="1" min="1" max="{{$data->stock}}" name="quantity" value="{{$data->product_quantity}}">
+                                            <span class="qty-plus add_cart"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                         </div>
+                                        <input type="hidden" class="qty-text" id="{{$data->id}}"name="id" value="{{$data->id}}"> 
                                     </td>
                                     <td class="price"><span>{{$data->price}}</span></td>
-                                    <td class="total_price"><span>{{$data->price}}</span></td>
+                                    <td class="total_price"><span id="total_price_{{$data->id}}">{{$data->price}}</span></td>
                                     <td class="action"><a href="{{route('deleteCart',$data->id)}}"><i class="icon_close"></i></a></td>
                                 </tr>
                                 @endforeach
@@ -92,7 +93,7 @@
                         <h5 class="title--">Cart Total</h5>
                         <div class="subtotal d-flex justify-content-between">
                             <h5>Subtotal</h5>
-                            <h5>{{$total}}</h5>
+                            <h5 id="sub_total_all">{{$total}}</h5>
                         </div>
                         <div class="shipping d-flex justify-content-between">
                             <h5>Shipping</h5>
@@ -113,7 +114,8 @@
                         </div>
                         <div class="total d-flex justify-content-between">
                             <h5>Total</h5>
-                            <h5>{{$total}}</h5>
+                            <h5 id="sub_total_all">{{$total}}</h5>
+                            <input type="hidden" name="sub_total" id="sub_total" value="{{$total}}">
                         </div>
                         <div class="checkout-btn">
                             <a href="#" class="btn alazea-btn w-100">PROCEED TO CHECKOUT</a>

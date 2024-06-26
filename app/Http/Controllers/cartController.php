@@ -95,4 +95,48 @@ class CartController extends Controller
         }
        
     }
+
+    public function add_cart_with_total(Request $request){
+        $qty = $request->qty;
+        $id = $request->id;
+        $sub_total_tamp = $request->sub_total;
+
+        $product = cart::find($id);
+        $price = $product->price;
+        $total_price = $qty * $price;
+
+        $sub_total_tamp1 = $total_price - $price;
+
+        $sub_total_final = $sub_total_tamp1 + $sub_total_tamp;
+        
+       return response()->json([
+        'total_price' => $total_price,
+        'id' => $id,
+        'sub_total' => $sub_total_final,
+       ]);
+    }
+
+
+    public function sub_cart_with_total(Request $request){
+        $qty = $request->qty;
+        $sub_total_tamp = $request->sub_total;
+        if($qty == null){
+            $qty = $qty + 1;
+        }
+        $id = $request->id;
+        session()->put('cart_tampid', $id);
+
+        $product = cart::find($id);
+        $price = $product->price;
+        $total_price = $qty * $price;
+
+        $sub_total_tamp1 = $total_price - $price;
+
+        $sub_total_final = $sub_total_tamp1 + $sub_total_tamp;
+       return response()->json([
+        'total_price' => $total_price,
+        'id' => $id,
+        'sub_total' => $sub_total_final, 
+       ]);
+    }
 }
