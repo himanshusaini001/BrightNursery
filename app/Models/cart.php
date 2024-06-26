@@ -24,6 +24,7 @@ class cart extends Model
         'product_name',
         'product_quantity',
         'price',
+        'total_price',
         'stock',
     ];
 }

@@ -46,7 +46,7 @@
                                 @foreach ($cart_data as $data)
                                     
                                 @php
-                                    $total += $data->price;
+                                    $total += $data->total_price;
                                 @endphp
                                
                                 <tr>
@@ -63,7 +63,7 @@
                                         <input type="hidden" class="qty-text" id="{{$data->id}}"name="id" value="{{$data->id}}"> 
                                     </td>
                                     <td class="price"><span>{{$data->price}}</span></td>
-                                    <td class="total_price"><span id="total_price_{{$data->id}}">{{$data->price}}</span></td>
+                                    <td class="total_price"><span id="total_price_{{$data->id}}">{{$data->total_price}}</span></td>
                                     <td class="action"><a href="{{route('deleteCart',$data->id)}}"><i class="icon_close"></i></a></td>
                                 </tr>
                                 @endforeach

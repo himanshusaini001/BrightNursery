@@ -66,6 +66,7 @@ class CartController extends Controller
                 'product_name' => $product->name,
                 'product_quantity' => $qty,
                 'price' => $product->price,
+                'total_price' => $product->price,
                 'stock' => $product->stock,
             ]);
             if ($addcart) {
@@ -99,27 +100,29 @@ class CartController extends Controller
     public function add_cart_with_total(Request $request){
         $qty = $request->qty;
         $id = $request->id;
-        $sub_total_tamp = $request->sub_total;
-
         $product = cart::find($id);
         $price = $product->price;
         $total_price = $qty * $price;
 
-        $sub_total_tamp1 = $total_price - $price;
-
-        $sub_total_final = $sub_total_tamp1 + $sub_total_tamp;
-        
-       return response()->json([
-        'total_price' => $total_price,
-        'id' => $id,
-        'sub_total' => $sub_total_final,
-       ]);
+        $update = Cart::where('id', $id)->update([
+            'product_quantity' => $qty,
+            'total_price' => $total_price
+        ]);
+        if($update){
+            $sub_total_data_tamp = cart::all();
+            $sub_total = $sub_total_data_tamp->pluck('total_price')->sum();
+            return response()->json([
+                'total_price' => $total_price,
+                'id' => $id,
+                'sub_total' => $sub_total,
+               ]);
+        }
+       
     }
 
 
     public function sub_cart_with_total(Request $request){
         $qty = $request->qty;
-        $sub_total_tamp = $request->sub_total;
         if($qty == null){
             $qty = $qty + 1;
         }
@@ -130,13 +133,19 @@ class CartController extends Controller
         $price = $product->price;
         $total_price = $qty * $price;
 
-        $sub_total_tamp1 = $total_price - $price;
 
-        $sub_total_final = $sub_total_tamp1 + $sub_total_tamp;
-       return response()->json([
-        'total_price' => $total_price,
-        'id' => $id,
-        'sub_total' => $sub_total_final, 
-       ]);
+        $update = Cart::where('id', $id)->update([
+            'product_quantity' => $qty,
+            'total_price' => $total_price
+        ]);
+        if($update){
+            $sub_total_data_tamp = cart::all();
+            $sub_total = $sub_total_data_tamp->pluck('total_price')->sum();;
+            return response()->json([
+                'total_price' => $total_price,
+                'id' => $id,
+                'sub_total' => $sub_total,
+               ]);
+        }
     }
 }

@@ -111,15 +111,14 @@ function add(value,stock) {
         }
     }
 }
-function add_cart_with_total(qty,id,sub_total){
+function add_cart_with_total(qty,id){
     axios.post('/add_cart_with_total', {
         qty: qty,
         id: id,
-        sub_total:sub_total
     })
     .then(function (response) {
        var responseData =  response.data;
-       document.getElementById('sub_total_all').innerHTML = responseData.sub_total;
+      document.getElementById('sub_total_all').innerHTML = responseData.sub_total;
        var totalPriceElement = document.getElementById('total_price_' + id);
         if (totalPriceElement) {
             totalPriceElement.innerHTML = responseData.total_price;
@@ -130,7 +129,7 @@ function add_cart_with_total(qty,id,sub_total){
     });
 }
 
-function sub_cart_with_total(qty,id,sub_total){
+function sub_cart_with_total(qty,id){
    
     if(qty == null)
     {
@@ -139,11 +138,10 @@ function sub_cart_with_total(qty,id,sub_total){
     axios.post('/add_cart_with_total', {
         qty: qty,
         id: id,
-        sub_total:sub_total
     })
     .then(function (response) {
        var responseData =  response.data;
-       document.getElementById('sub_total_all').innerHTML = responseData.sub_total;
+      document.getElementById('sub_total_all').innerHTML = responseData.sub_total;
        var totalPriceElement = document.getElementById('total_price_' + id);
        if (totalPriceElement) {
            totalPriceElement.innerHTML = responseData.total_price;
@@ -252,13 +250,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     var currentQty = parseInt(inputField.value);
                     var maxQty = parseInt(inputField.getAttribute('max'));
                     var id = parseInt(inputField.getAttribute('id'));
-                    var sub_total = parseInt(document.getElementById('sub_total').getAttribute('value'));
-                   
                     if (currentQty < maxQty) {
                         inputField.value = currentQty + 1;
                         var qty = inputField.value;
                     }
-                    add_cart_with_total(qty,id,sub_total);
+                    add_cart_with_total(qty,id);
                 });
             });
         }
@@ -271,13 +267,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     var currentQty = parseInt(inputField.value);
                     var minQty = parseInt(inputField.getAttribute('min'));
                     var id = parseInt(inputField.getAttribute('id'));
-                    var sub_total = parseInt(document.getElementById('sub_total').getAttribute('value')); 
 
                     if (currentQty > minQty) {
                         inputField.value = currentQty - 1;
                         var qty = inputField.value;
                     }
-                    sub_cart_with_total(qty,id,sub_total);
+                    sub_cart_with_total(qty,id);
                 });
             });
         }
